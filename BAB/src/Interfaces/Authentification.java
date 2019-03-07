@@ -65,7 +65,7 @@ public class Authentification extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\Downloads\\stethoscope.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\stethoscope.png"));
 		lblNewLabel.setBounds(192, 26, 98, 87);
 		panel.add(lblNewLabel);
 		
@@ -102,19 +102,19 @@ public class Authentification extends JFrame {
 		panel.add(passwordField);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\Downloads\\closed-lock (1).png"));
+		label_1.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\closed-lock (1).png"));
 		label_1.setBounds(83, 334, 56, 44);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\Downloads\\user.png"));
+		label_2.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\user.png"));
 		label_2.setBounds(83, 233, 56, 44);
 		panel.add(label_2);
 		
 		JButton btnNewButton = new JButton("     LOGIN");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\Downloads\\open-padlock.png"));
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\open-padlock.png"));
 		btnNewButton.setBackground(new Color(240, 255, 255));
 		btnNewButton.setBounds(245, 405, 151, 44);
 		panel.add(btnNewButton);
@@ -127,7 +127,7 @@ public class Authentification extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setBackground(new Color(253, 245, 230));
-		label.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\Desktop\\backgroud ki ma tle3.png"));
+		label.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\backgroud ki ma tle3.png"));
 		label.setBounds(0, 0, 482, 553);
 		panel.add(label);
 	}
