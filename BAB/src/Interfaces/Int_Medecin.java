@@ -77,7 +77,7 @@ public class Int_Medecin extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon("ressources\\icons8-accueil-32.png"));
 		lblNewLabel.setBackground(new Color(128, 128, 128));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(12, 106, 205, 49);
+		lblNewLabel.setBounds(12, 161, 205, 49);
 		panel.add(lblNewLabel);
 		
 		JLabel lblPatient = new JLabel("     Patient");
@@ -97,7 +97,7 @@ public class Int_Medecin extends JFrame {
 		
 		lblPatient.setIcon(new ImageIcon("ressources\\icons8-\u00EAtre-malade-36.png"));
 		lblPatient.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPatient.setBounds(12, 168, 205, 49);
+		lblPatient.setBounds(12, 223, 205, 49);
 		panel.add(lblPatient);
 		
 		JLabel lblMonCompte = new JLabel("     Mon Compte");
@@ -116,8 +116,14 @@ public class Int_Medecin extends JFrame {
 		lblMonCompte.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
 		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMonCompte.setBounds(12, 230, 205, 49);
+		lblMonCompte.setBounds(12, 281, 205, 49);
 		panel.add(lblMonCompte);
+		
+		JLabel lblBab = new JLabel("");
+		lblBab.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBab.setIcon(new ImageIcon("ressources\\stethoscope.png"));
+		lblBab.setBounds(12, 27, 193, 66);
+		panel.add(lblBab);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(135, 206, 235));
