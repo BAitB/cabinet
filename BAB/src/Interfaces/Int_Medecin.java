@@ -80,25 +80,7 @@ public class Int_Medecin extends JFrame {
 		lblNewLabel.setBounds(12, 161, 205, 49);
 		panel.add(lblNewLabel);
 		
-		JLabel lblPatient = new JLabel("     Patient");
-		lblPatient.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblPatient.setOpaque(true);
-				lblPatient.setBackground(new Color(250, 255, 240));
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblPatient.setBackground(new Color(175, 238, 238));
-			}
-		});
-		lblPatient.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		
-		lblPatient.setIcon(new ImageIcon("ressources\\icons8-\u00EAtre-malade-36.png"));
-		lblPatient.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPatient.setBounds(12, 223, 205, 49);
-		panel.add(lblPatient);
 		
 		JLabel lblMonCompte = new JLabel("     Mon Compte");
 		lblMonCompte.addMouseListener(new MouseAdapter() {
@@ -126,10 +108,15 @@ public class Int_Medecin extends JFrame {
 		panel.add(lblBab);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(135, 206, 235));
+		panel_1.setBackground(new Color(175, 238, 238));
 		panel_1.setBounds(216, 0, 866, 553);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBackground(new Color(240, 255, 240));
+		lblNewLabel_1.setBounds(200, 0, 666, 90);
+		panel_1.add(lblNewLabel_1);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(175, 238, 238));
@@ -143,8 +130,40 @@ public class Int_Medecin extends JFrame {
 		panel_3.add(lblImandknsjksd);
 		
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
+		label_3.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\backgroud ki ma tle3.png"));
+		label_3.setBackground(new Color(245, 255, 250));
 		label_3.setBounds(0, 0, 866, 553);
+		label_3.setVisible(true);
 		panel_1.add(label_3);
+		
+		JLabel lblPatient = new JLabel("     Patient");
+		lblPatient.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				lblPatient.setOpaque(true);
+				lblPatient.setBackground(new Color(250, 255, 240));
+				
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblPatient.setBackground(new Color(175, 238, 238));
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Patient_pan patien=new Patient_pan();
+				patien.setBounds(0, 90,866,846);
+				label_3.setVisible(false);
+				lblNewLabel_1.setOpaque(true);
+				panel_1.add(patien);
+				
+				
+			}
+		});
+		lblPatient.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
+		
+		lblPatient.setIcon(new ImageIcon("ressources\\icons8-\u00EAtre-malade-36.png"));
+		lblPatient.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPatient.setBounds(12, 223, 205, 49);
+		panel.add(lblPatient);
 	}
-}
+	}
