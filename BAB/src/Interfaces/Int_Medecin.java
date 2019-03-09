@@ -154,10 +154,6 @@ public class Int_Medecin extends JFrame {
 		msgLabel.setBounds(793, 107, 63, 39);
 		panel_2.add(msgLabel);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(504, 145, 63, 39);
-		panel_2.add(label_1);
-		
 		JLabel label_3 = new JLabel("");
 		label_3.setBounds(0, -90, 866, 553);
 		panel_2.add(label_3);
