@@ -117,12 +117,40 @@ public class Int_Medecin extends JFrame {
 		lblImandknsjksd.setBounds(0, 13, 187, 44);
 		panel_3.add(lblImandknsjksd);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(0, 90, 866, 463);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel outlookLabel = new JLabel("");
+		outlookLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\outlook.png"));
+		outlookLabel.setBounds(10, 29, 63, 39);
+		panel_2.add(outlookLabel);
+		
+		JLabel calendrierLabel = new JLabel("");
+		calendrierLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\calendar.png"));
+		calendrierLabel.setBounds(10, 107, 63, 39);
+		panel_2.add(calendrierLabel);
+		
+		JLabel nextLabel = new JLabel("");
+		nextLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\next.png"));
+		nextLabel.setBounds(793, 29, 63, 39);
+		panel_2.add(nextLabel);
+		
+		JLabel msgLabel = new JLabel("");
+		msgLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\msg.png"));
+		msgLabel.setBounds(793, 107, 63, 39);
+		panel_2.add(msgLabel);
+		
 		JLabel label_3 = new JLabel("");
+<<<<<<< HEAD
+=======
+		label_3.setBounds(0, -90, 866, 553);
+		panel_2.add(label_3);
+>>>>>>> branch 'master' of https://github.com/BAitB/cabinet.git
 		label_3.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label_3.setBackground(new Color(245, 255, 250));
-		label_3.setBounds(0, 0, 866, 553);
 		label_3.setVisible(true);
-		panel_1.add(label_3);
 		
 		JLabel lblPatient = new JLabel("     Patient");
 		lblPatient.addMouseListener(new MouseAdapter() {
