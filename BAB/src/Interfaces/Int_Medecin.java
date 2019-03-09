@@ -130,7 +130,7 @@ public class Int_Medecin extends JFrame {
 		panel_3.add(lblImandknsjksd);
 		
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\backgroud ki ma tle3.png"));
+		label_3.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label_3.setBackground(new Color(245, 255, 250));
 		label_3.setBounds(0, 0, 866, 553);
 		label_3.setVisible(true);
