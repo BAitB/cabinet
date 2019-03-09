@@ -18,6 +18,11 @@ import java.awt.event.MouseEvent;
 public class Int_Medecin extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel panel_1;
+	private JLabel label_3;
+	Patient_pan patien=new Patient_pan();
+	compte_pan compte=new compte_pan();
+	//private JLabel lblMonCompte;
 
 	/**
 	 * Launch the application.
@@ -82,24 +87,7 @@ public class Int_Medecin extends JFrame {
 		
 		
 		
-		JLabel lblMonCompte = new JLabel("     Mon Compte");
-		lblMonCompte.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblMonCompte.setOpaque(true);
-				lblMonCompte.setBackground(new Color(250, 255, 240));
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblMonCompte.setBackground(new Color(175, 238, 238));
-			}
-		});
-		lblMonCompte.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
-		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
-		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMonCompte.setBounds(12, 281, 205, 49);
-		panel.add(lblMonCompte);
+		
 		
 		JLabel lblBab = new JLabel("");
 		lblBab.setHorizontalAlignment(SwingConstants.CENTER);
@@ -130,7 +118,7 @@ public class Int_Medecin extends JFrame {
 		panel_3.add(lblImandknsjksd);
 		
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\backgroud ki ma tle3.png"));
+		label_3.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label_3.setBackground(new Color(245, 255, 250));
 		label_3.setBounds(0, 0, 866, 553);
 		label_3.setVisible(true);
@@ -150,7 +138,8 @@ public class Int_Medecin extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Patient_pan patien=new Patient_pan();
+				compte.setVisible(false);
+				patien.setVisible(true);
 				patien.setBounds(0, 90,866,846);
 				label_3.setVisible(false);
 				lblNewLabel_1.setOpaque(true);
@@ -159,6 +148,33 @@ public class Int_Medecin extends JFrame {
 				
 			}
 		});
+		JLabel lblMonCompte = new JLabel("     Mon Compte");
+		lblMonCompte.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				lblMonCompte.setOpaque(true);
+				lblMonCompte.setBackground(new Color(250, 255, 240));
+				
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblMonCompte.setBackground(new Color(175, 238, 238));
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				patien.setVisible(false);
+				compte.setVisible(true);
+				compte.setBounds(0, 90,866,846);
+				label_3.setVisible(false);
+				lblNewLabel_1.setOpaque(true);
+				panel_1.add(compte);
+			}
+		});
+		lblMonCompte.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
+		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
+		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);
+		lblMonCompte.setBounds(12, 281, 205, 49);
+		panel.add(lblMonCompte);
 		lblPatient.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		
 		lblPatient.setIcon(new ImageIcon("ressources\\icons8-\u00EAtre-malade-36.png"));

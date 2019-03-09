@@ -73,7 +73,7 @@ public class Patient_pan extends JPanel {
 		add(comboBox);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\backgroud ki ma tle3.png"));
+		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		lblNewLabel.setBounds(0, 0, 864, 464);
 		add(lblNewLabel);
 
