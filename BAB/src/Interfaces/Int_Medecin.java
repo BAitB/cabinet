@@ -65,25 +65,8 @@ public class Int_Medecin extends JFrame {
 		lblSeDconnecter.setOpaque(true);
 		panel.add(lblSeDconnecter);
 		
-		JLabel lblNewLabel = new JLabel("      Acceuil");
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblNewLabel.setOpaque(true);
-				lblNewLabel.setBackground(new Color(250, 255, 240));
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblNewLabel.setBackground(new Color(175, 238, 238));
-			}
-		});
-		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
-		lblNewLabel.setIcon(new ImageIcon("ressources\\icons8-accueil-32.png"));
-		lblNewLabel.setBackground(new Color(128, 128, 128));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(12, 161, 205, 49);
-		panel.add(lblNewLabel);
+		
+		
 		
 		
 		
@@ -123,31 +106,30 @@ public class Int_Medecin extends JFrame {
 		panel_2.setLayout(null);
 		
 		JLabel outlookLabel = new JLabel("");
-		outlookLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\outlook.png"));
+		outlookLabel.setIcon(new ImageIcon("ressources\\outlook.png"));
 		outlookLabel.setBounds(10, 29, 63, 39);
 		panel_2.add(outlookLabel);
 		
 		JLabel calendrierLabel = new JLabel("");
-		calendrierLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\calendar.png"));
+		calendrierLabel.setIcon(new ImageIcon("ressources\\calendar.png"));
 		calendrierLabel.setBounds(10, 107, 63, 39);
 		panel_2.add(calendrierLabel);
 		
 		JLabel nextLabel = new JLabel("");
-		nextLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\next.png"));
+		nextLabel.setIcon(new ImageIcon("ressources\\next.png"));
 		nextLabel.setBounds(793, 29, 63, 39);
 		panel_2.add(nextLabel);
 		
 		JLabel msgLabel = new JLabel("");
-		msgLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\msg.png"));
+		msgLabel.setIcon(new ImageIcon("ressources\\msg.png"));
 		msgLabel.setBounds(793, 107, 63, 39);
 		panel_2.add(msgLabel);
 		
 		JLabel label_3 = new JLabel("");
-<<<<<<< HEAD
-=======
+
 		label_3.setBounds(0, -90, 866, 553);
 		panel_2.add(label_3);
->>>>>>> branch 'master' of https://github.com/BAitB/cabinet.git
+
 		label_3.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label_3.setBackground(new Color(245, 255, 250));
 		label_3.setVisible(true);
@@ -166,8 +148,10 @@ public class Int_Medecin extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				compte.setVisible(false);
 				patien.setVisible(true);
+				panel_2.setVisible(false);				
+				compte.setVisible(false);
+				
 				patien.setBounds(0, 90,866,846);
 				label_3.setVisible(false);
 				lblNewLabel_1.setOpaque(true);
@@ -191,6 +175,7 @@ public class Int_Medecin extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				patien.setVisible(false);
+				panel_2.setVisible(false);				
 				compte.setVisible(true);
 				compte.setBounds(0, 90,866,846);
 				label_3.setVisible(false);
@@ -198,6 +183,31 @@ public class Int_Medecin extends JFrame {
 				panel_1.add(compte);
 			}
 		});
+		JLabel lblNewLabel = new JLabel("      Acceuil");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				lblNewLabel.setOpaque(true);
+				lblNewLabel.setBackground(new Color(250, 255, 240));
+				
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel.setBackground(new Color(175, 238, 238));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				patien.setVisible(false);
+				panel_2.setVisible(true);				
+				compte.setVisible(false);
+			}
+		});
+		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
+		lblNewLabel.setIcon(new ImageIcon("ressources\\icons8-accueil-32.png"));
+		lblNewLabel.setBackground(new Color(128, 128, 128));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setBounds(12, 161, 205, 49);
+		panel.add(lblNewLabel);
 		lblMonCompte.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
 		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);

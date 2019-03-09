@@ -13,6 +13,10 @@ import java.awt.event.ItemEvent;
 import java.awt.Font;
 
 public class Patient_pan extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTextField textField;
 
@@ -72,11 +76,10 @@ public class Patient_pan extends JPanel {
 		
 		add(comboBox);
 		
-<<<<<<< HEAD
-		JLabel lblNewLabel = new JLabel("New label");
-=======
+
+
 		JLabel lblNewLabel = new JLabel("");
->>>>>>> branch 'master' of https://github.com/BAitB/cabinet.git
+		
 		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		lblNewLabel.setBounds(0, 0, 864, 464);
 		add(lblNewLabel);
