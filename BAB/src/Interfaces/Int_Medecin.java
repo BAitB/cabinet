@@ -14,12 +14,15 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Int_Medecin extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel_1;
-	private JLabel label_3;
+	private JLabel label_3,magana;
 	Patient_pan patien=new Patient_pan();
 	compte_pan compte=new compte_pan();
 	//private JLabel lblMonCompte;
@@ -175,6 +178,11 @@ public class Int_Medecin extends JFrame {
 
 		label_3.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label_3.setBackground(new Color(245, 255, 250));
+		
+		magana = new JLabel("");
+		magana.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
+		magana.setBounds(460, 13, 394, 57);
+		panel_1.add(magana);
 		label_3.setVisible(true);
 		
 		JLabel lblPatient = new JLabel("     Patient");
@@ -262,5 +270,29 @@ public class Int_Medecin extends JFrame {
 		lblPatient.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPatient.setBounds(12, 223, 205, 49);
 		panel.add(lblPatient);
+		
+		
+		Thread clock = new Thread() {
+		    @Override
+		    public void run() {
+		        while (true) { magana.setText(sa3a());
+		            try {
+		                sleep(500); 
+		            } catch (InterruptedException ie) {
+		            }
+		        }
+		    }
+		};
+		clock.start();
 	}
+	
+	public static String sa3a() {
+		java.util.Date date1=new java.util.Date();
+		java.util.GregorianCalendar calendar = new GregorianCalendar();
+		java.util.Date time  = calendar.getTime();
+		String f= ""+time;
+      
+        return f;
+	}
+	
 	}
