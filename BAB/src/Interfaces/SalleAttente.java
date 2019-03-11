@@ -46,7 +46,9 @@ public class SalleAttente extends JFrame {
 	 */
 	public SalleAttente() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 604, 300);
+		setUndecorated(true);
+		this.setLocationRelativeTo(null);
+		setBounds(100, 100, 587, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,7 +76,7 @@ public class SalleAttente extends JFrame {
 		panel.add(fileattenteLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 56, 588, 205);
+		scrollPane.setBounds(0, 56, 588, 243);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -91,7 +93,7 @@ public class SalleAttente extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setBounds(0, 0, 588, 261);
+		lblNewLabel.setBounds(0, 0, 604, 299);
 		panel.add(lblNewLabel);
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 			@Override
