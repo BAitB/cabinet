@@ -20,6 +20,7 @@ public class Int_Secretaire extends JFrame {
 	private JPanel contentPane;
 	private JLabel magana;
 	JPanel panel_1;
+	JLabel labelimg;
 
 	RDV_PAN RP=new RDV_PAN();
 	/**
@@ -95,6 +96,7 @@ public class Int_Secretaire extends JFrame {
 				RP.setBounds(0, 90,866,846);
 				RP.setVisible(true);
 				panel_1.add(RP);
+				labelimg.setVisible(false);
 				
 				
 			}
@@ -166,11 +168,11 @@ public class Int_Secretaire extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setBackground(new Color(175, 238, 238));
-		label.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
-		label.setBounds(0, 90, 866, 463);
-		panel_1.add(label);
+		 labelimg = new JLabel("");
+		labelimg.setBackground(new Color(175, 238, 238));
+		labelimg.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
+		labelimg.setBounds(0, 90, 866, 463);
+		panel_1.add(labelimg);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
