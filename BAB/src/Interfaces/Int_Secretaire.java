@@ -19,7 +19,9 @@ public class Int_Secretaire extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel magana;
+	JPanel panel_1;
 
+	RDV_PAN RP=new RDV_PAN();
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +71,7 @@ public class Int_Secretaire extends JFrame {
 				lblpatient.setBackground(new Color(175, 238, 238));
 			}
 		});
-		lblpatient.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\icons8-\u00EAtre-malade-36.png"));
+		lblpatient.setIcon(new ImageIcon("ressources\\icons8-\u00EAtre-malade-36.png"));
 		lblpatient.setHorizontalAlignment(SwingConstants.LEFT);
 		lblpatient.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblpatient.setBackground(Color.GRAY);
@@ -88,8 +90,16 @@ public class Int_Secretaire extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblRDV.setBackground(new Color(175, 238, 238));
 			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {	
+				RP.setBounds(0, 90,866,846);
+				RP.setVisible(true);
+				panel_1.add(RP);
+				
+				
+			}
 		});
-		lblRDV.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\icons8-health-checkup-30.png"));
+		lblRDV.setIcon(new ImageIcon("ressources\\icons8-health-checkup-30.png"));
 		lblRDV.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRDV.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblRDV.setBackground(Color.GRAY);
@@ -109,7 +119,7 @@ public class Int_Secretaire extends JFrame {
 				lblMonCompte.setBackground(new Color(175, 238, 238));
 			}
 		});
-		lblMonCompte.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\user1.png"));
+		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
 		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMonCompte.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblMonCompte.setBackground(Color.GRAY);
@@ -129,7 +139,7 @@ public class Int_Secretaire extends JFrame {
 				lblAccueil.setBackground(new Color(175, 238, 238));
 			}
 		});
-		lblAccueil.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\icons8-accueil-32.png"));
+		lblAccueil.setIcon(new ImageIcon("ressources\\icons8-accueil-32.png"));
 		lblAccueil.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAccueil.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblAccueil.setBackground(Color.GRAY);
@@ -137,7 +147,7 @@ public class Int_Secretaire extends JFrame {
 		panel.add(lblAccueil);
 		
 		JLabel lblsedeconnecter = new JLabel("Se d\u00E9connecter");
-		lblsedeconnecter.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\logout.png"));
+		lblsedeconnecter.setIcon(new ImageIcon("ressources\\logout.png"));
 		lblsedeconnecter.setOpaque(true);
 		lblsedeconnecter.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
 		lblsedeconnecter.setBackground(new Color(245, 255, 250));
@@ -145,12 +155,12 @@ public class Int_Secretaire extends JFrame {
 		panel.add(lblsedeconnecter);
 		
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\stethoscope.png"));
+		label_2.setIcon(new ImageIcon("ressources\\stethoscope.png"));
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setBounds(12, 24, 193, 66);
 		panel.add(label_2);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(175, 238, 238));
 		panel_1.setBounds(216, 0, 866, 553);
 		contentPane.add(panel_1);
@@ -158,7 +168,7 @@ public class Int_Secretaire extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setBackground(new Color(175, 238, 238));
-		label.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\backgroud ki ma tle3.png"));
+		label.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label.setBounds(0, 90, 866, 463);
 		panel_1.add(label);
 		
@@ -169,7 +179,7 @@ public class Int_Secretaire extends JFrame {
 		panel_1.add(panel_2);
 		
 		JLabel lblMlleKniytha = new JLabel("Mlle Kniytha");
-		lblMlleKniytha.setIcon(new ImageIcon("C:\\Users\\Imad Boutahar\\git\\cabinet\\BAB\\ressources\\icons8-woman-profile-32.png"));
+		lblMlleKniytha.setIcon(new ImageIcon("ressources\\icons8-woman-profile-32.png"));
 		lblMlleKniytha.setBounds(0, 13, 187, 44);
 		panel_2.add(lblMlleKniytha);
 		

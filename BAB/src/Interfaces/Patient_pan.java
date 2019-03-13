@@ -81,7 +81,7 @@ public class Patient_pan extends JPanel {
 		JLabel lblNewLabel = new JLabel("");
 		
 		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
-		lblNewLabel.setBounds(0, 0, 864, 464);
+		lblNewLabel.setBounds(0, 0, 864, 462);
 		add(lblNewLabel);
 
 	}
