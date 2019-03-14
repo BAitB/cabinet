@@ -117,7 +117,7 @@ public class RDV_PAN extends JPanel {
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\mohamed\\git\\cabinet\\BAB\\ressources\\backgroud ki ma tle3.png"));
+		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		lblNewLabel.setBounds(0, 0, 878, 448);
 		add(lblNewLabel);
 		

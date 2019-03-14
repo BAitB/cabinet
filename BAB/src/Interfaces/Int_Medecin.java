@@ -92,7 +92,7 @@ public class Int_Medecin extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBackground(new Color(240, 255, 240));
-		lblNewLabel_1.setBounds(200, 0, 666, 90);
+		lblNewLabel_1.setBounds(209, 0, 666, 90);
 		panel_1.add(lblNewLabel_1);
 		
 		JPanel panel_3 = new JPanel();

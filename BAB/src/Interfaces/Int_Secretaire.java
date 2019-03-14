@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Int_Secretaire extends JFrame {
 
@@ -23,6 +25,7 @@ public class Int_Secretaire extends JFrame {
 	JLabel labelimg;
 
 	RDV_PAN RP=new RDV_PAN();
+	AcceuilS_pan acceuil=new AcceuilS_pan();
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +48,15 @@ public class Int_Secretaire extends JFrame {
 
 	
 	public Int_Secretaire() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				acceuil.setBounds(0, 90,866,846);
+				acceuil.setVisible(true);
+				panel_1.add(acceuil);
+				labelimg.setVisible(false);
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 600);
 		contentPane = new JPanel();
@@ -139,6 +151,13 @@ public class Int_Secretaire extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblAccueil.setBackground(new Color(175, 238, 238));
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				acceuil.setBounds(0, 90,866,846);
+				acceuil.setVisible(true);
+				panel_1.add(acceuil);
+				labelimg.setVisible(false);
 			}
 		});
 		lblAccueil.setIcon(new ImageIcon("ressources\\icons8-accueil-32.png"));

@@ -205,7 +205,7 @@ public class compte_pan extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if(hello==true)
 				{
-					System.out.println("dakhla lawla");
+					
 					label_8.setIcon(new ImageIcon("ressources\\up.png"));
 				//panel_2.add(label);
 				txtMotDePasse.setVisible(true);
@@ -214,7 +214,7 @@ public class compte_pan extends JPanel {
 				hello=false;
 				}
 				else{
-					System.out.println("rani dkhalt hna");
+					
 					label_8.setIcon(new ImageIcon("ressources\\down.png"));
 					txtMotDePasse.setVisible(false);
 					txtNouveauMotDe.setVisible(false);
