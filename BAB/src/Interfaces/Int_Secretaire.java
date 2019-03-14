@@ -109,7 +109,7 @@ public class Int_Secretaire extends JFrame {
 				RP.setVisible(true);
 				panel_1.add(RP);
 				labelimg.setVisible(false);
-				
+				acceuil.setVisible(false);
 				
 			}
 		});

@@ -11,46 +11,16 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 
 public class RDV_PAN extends JPanel {
+	private JTable table;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTable table;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 
 	/**
 	 * Create the panel.
 	 */
 	public RDV_PAN() {
 		setLayout(null);
-		
-		JLabel label = new JLabel("New label");
-		label.setBounds(166, 150, 46, 14);
-		add(label);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(166, 164, 86, 20);
-		add(textField_5);
-		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(24, 150, 46, 14);
-		add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(166, 88, 46, 14);
-		add(lblNewLabel_4);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(24, 164, 86, 20);
-		add(textField_4);
-		textField_4.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(166, 109, 84, 20);
-		add(textField_3);
-		textField_3.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(353, 0, 525, 412);
@@ -59,71 +29,77 @@ public class RDV_PAN extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton ListerButton = new JButton("Lister");
-		ListerButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		ListerButton.setBackground(new Color(127, 255, 212));
-		ListerButton.setBounds(202, 223, 120, 23);
-		add(ListerButton);
-		
-		JButton AjouterButton = new JButton("Ajouter");
-		AjouterButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		AjouterButton.setBackground(new Color(144, 238, 144));
-		AjouterButton.setBounds(153, 285, 126, 23);
-		add(AjouterButton);
-		
 		JButton SupprimerButton = new JButton("Supprimer");
+		SupprimerButton.setBounds(706, 423, 115, 23);
+		add(SupprimerButton);
 		SupprimerButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		SupprimerButton.setBackground(Color.RED);
-		SupprimerButton.setBounds(10, 342, 114, 23);
-		add(SupprimerButton);
-		
-		JButton ModifierButton = new JButton("Modifier");
-		ModifierButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		ModifierButton.setBackground(Color.GREEN);
-		ModifierButton.setBounds(10, 285, 114, 23);
-		add(ModifierButton);
 		
 		JButton ViderButton = new JButton("Vider");
+		ViderButton.setBounds(10, 423, 105, 23);
+		add(ViderButton);
 		ViderButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		ViderButton.setBackground(Color.WHITE);
-		ViderButton.setBounds(153, 342, 126, 23);
-		add(ViderButton);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(24, 109, 86, 20);
-		add(textField_2);
+		JButton ListerButton = new JButton("Lister");
+		ListerButton.setBounds(329, 423, 120, 23);
+		add(ListerButton);
+		ListerButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		ListerButton.setBackground(new Color(127, 255, 212));
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(35, 29, 46, 14);
-		add(lblNewLabel_1);
+		JButton ModifierButton = new JButton("Modifier");
+		ModifierButton.setBounds(174, 423, 105, 23);
+		add(ModifierButton);
+		ModifierButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		ModifierButton.setBackground(Color.GREEN);
+		
+		JButton AjouterButton = new JButton("Ajouter");
+		AjouterButton.setBounds(508, 423, 115, 23);
+		add(AjouterButton);
+		AjouterButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		AjouterButton.setBackground(new Color(144, 238, 144));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 353, 412);
+		add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Date");
+		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(24, 195, 81, 13);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("CIN Docteur");
+		lblNewLabel_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(24, 44, 105, 23);
+		panel.add(lblNewLabel_2);
 		
 		textField = new JTextField();
-		textField.setBounds(24, 45, 86, 20);
-		add(textField);
+		textField.setBounds(156, 119, 141, 28);
+		panel.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(166, 29, 46, 14);
-		add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(24, 88, 46, 14);
-		add(lblNewLabel_3);
+		JLabel lblNewLabel_3 = new JLabel("CIN Patient");
+		lblNewLabel_3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
+		lblNewLabel_3.setBounds(25, 117, 91, 28);
+		panel.add(lblNewLabel_3);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(164, 45, 86, 20);
-		add(textField_1);
+		textField_1.setBounds(156, 180, 141, 28);
+		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
-		lblNewLabel.setBounds(0, 0, 878, 448);
-		add(lblNewLabel);
+		textField_2 = new JTextField();
+		textField_2.setBounds(156, 43, 141, 28);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setBounds(166, 150, 46, 14);
-		add(lblNewLabel_6);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(new Color(0, 0, 0));
+		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
+		lblNewLabel.setBounds(0, 0, 878, 513);
+		add(lblNewLabel);
 
 	}
 }
