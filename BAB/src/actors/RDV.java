@@ -6,6 +6,14 @@ public class RDV {
 	String cinM;
 	String cinP;
 	Date date;
+	String description;
+
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getCinM() {
 		return cinM;
 	}
