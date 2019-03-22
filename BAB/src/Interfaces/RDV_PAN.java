@@ -17,6 +17,7 @@ public class RDV_PAN extends JPanel {
 	private JTextField FieldCINP;
 	private JTextField FieldDate;
 	private JTextField FieldCINDOC;
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -109,6 +110,19 @@ public class RDV_PAN extends JPanel {
 		FieldCINDOC.setBounds(156, 43, 141, 28);
 		panel.add(FieldCINDOC);
 		FieldCINDOC.setColumns(10);
+		
+		textField = new JTextField();
+		textField.setBounds(156, 247, 141, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("CINS");
+		lblNewLabel_4.setBounds(24, 250, 46, 14);
+		panel.add(lblNewLabel_4);
+		
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setBounds(24, 309, 68, 14);
+		panel.add(lblDescription);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(0, 0, 0));
