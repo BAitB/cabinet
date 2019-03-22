@@ -11,12 +11,17 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JProgressBar;
+import javax.swing.JToggleButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.JSpinner;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class RDV_PAN extends JPanel {
 	private JTable table;
-	private JTextField FieldCINP;
-	private JTextField FieldDate;
-	private JTextField FieldCINDOC;
 	private JTextField textField;
 
 	/**
@@ -26,7 +31,7 @@ public class RDV_PAN extends JPanel {
 		setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(204, 255, 204));
+		panel_1.setBackground(new Color(0, 206, 209));
 		panel_1.setBounds(0, 409, 878, 71);
 		add(panel_1);
 		panel_1.setLayout(null);
@@ -62,9 +67,7 @@ public class RDV_PAN extends JPanel {
 		AjouterButton.setBackground(new Color(144, 238, 144));
 		ViderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FieldCINDOC.setText("");
-				FieldCINP.setText("");
-				FieldDate.setText("");
+				
 			}
 		});
 		
@@ -76,53 +79,65 @@ public class RDV_PAN extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(204, 255, 204));
-		panel.setBounds(0, 0, 353, 408);
+		panel.setBackground(new Color(64, 224, 208));
+		panel.setBounds(0, 0, 353, 416);
 		add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Date");
-		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(24, 195, 81, 13);
+		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(37, 237, 81, 13);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("CIN Docteur");
-		lblNewLabel_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(24, 44, 105, 23);
+		lblNewLabel_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		lblNewLabel_2.setBounds(37, 183, 105, 23);
 		panel.add(lblNewLabel_2);
 		
-		FieldCINP = new JTextField();
-		FieldCINP.setBounds(156, 119, 141, 28);
-		panel.add(FieldCINP);
-		FieldCINP.setColumns(10);
-		
 		JLabel lblNewLabel_3 = new JLabel("CIN Patient");
-		lblNewLabel_3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(25, 117, 91, 28);
+		lblNewLabel_3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		lblNewLabel_3.setBounds(37, 89, 148, 28);
 		panel.add(lblNewLabel_3);
 		
-		FieldDate = new JTextField();
-		FieldDate.setBounds(156, 180, 141, 28);
-		panel.add(FieldDate);
-		FieldDate.setColumns(10);
-		
-		FieldCINDOC = new JTextField();
-		FieldCINDOC.setBounds(156, 43, 141, 28);
-		panel.add(FieldCINDOC);
-		FieldCINDOC.setColumns(10);
-		
-		textField = new JTextField();
-		textField.setBounds(156, 247, 141, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel_4 = new JLabel("CINS");
-		lblNewLabel_4.setBounds(24, 250, 46, 14);
+		JLabel lblNewLabel_4 = new JLabel("CIN Secretaire");
+		lblNewLabel_4.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		lblNewLabel_4.setBounds(37, 138, 143, 14);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblDescription = new JLabel("Description");
-		lblDescription.setBounds(24, 309, 68, 14);
+		lblDescription.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		lblDescription.setBounds(37, 282, 68, 14);
 		panel.add(lblDescription);
+		
+		JLabel lblNewLabel_5 = new JLabel("IdRDV");
+		lblNewLabel_5.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		lblNewLabel_5.setBounds(42, 51, 135, 14);
+		panel.add(lblNewLabel_5);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(195, 185, 135, 20);
+		panel.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(195, 91, 135, 20);
+		panel.add(comboBox_1);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(195, 136, 135, 20);
+		panel.add(comboBox_2);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(44, 307, 286, 98);
+		panel.add(textArea);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(195, 48, 29, 20);
+		panel.add(spinner);
+		
+		textField = new JTextField();
+		textField.setBounds(195, 234, 135, 20);
+		panel.add(textField);
+		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(0, 0, 0));

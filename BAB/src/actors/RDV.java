@@ -1,5 +1,10 @@
 package actors;
 
+  import DataBase.JDBC;
+  import DataBase.Helper;
+  import Interfaces.RDV_PAN;
+  
+
 import java.util.Date;
 
 public class RDV {
@@ -39,4 +44,8 @@ public class RDV {
 		this.date = date;
 	}
 
+	public static void AjouterRDV() {
+		
+	
+}
 }
