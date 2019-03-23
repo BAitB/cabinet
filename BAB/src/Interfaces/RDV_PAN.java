@@ -10,9 +10,19 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 import javax.swing.JToggleButton;
+import javax.swing.table.DefaultTableModel;
+
+
+
+import DataBase.Helper;
+import DataBase.JDBC;
+//import com.mysql.jdbc.Statement;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
@@ -49,6 +59,20 @@ public class RDV_PAN extends JPanel {
 		ViderButton.setBackground(Color.WHITE);
 		
 		JButton ListerButton = new JButton("Lister");
+		ListerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				java.sql.Connection con=JDBC.getConnection();
+				String req="select * from rdv ";
+				try {
+				java.sql.Statement stm=(java.sql.Statement) con.createStatement();
+				ResultSet rs=stm.executeQuery(req);
+				DefaultTableModel dtm=Helper.buildTableModel(rs);
+				table.setModel(dtm);
+				}
+				catch(SQLException e){ e.printStackTrace();}
+			}	
+			
+		});
 		ListerButton.setBounds(356, 23, 120, 23);
 		panel_1.add(ListerButton);
 		ListerButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
@@ -131,7 +155,8 @@ public class RDV_PAN extends JPanel {
 		panel.add(textArea);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(195, 48, 29, 20);
+		spinner.setEnabled(false);
+		spinner.setBounds(195, 48, 135, 20);
 		panel.add(spinner);
 		
 		textField = new JTextField();

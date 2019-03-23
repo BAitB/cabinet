@@ -44,7 +44,7 @@ public class RDV {
 		this.date = date;
 	}
 
-	public static void AjouterRDV() {
+	public static void ListerRDV() {
 		
 	
 }
