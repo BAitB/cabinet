@@ -25,7 +25,7 @@ public class Patient_sec_pan extends JPanel {
 	 * Create the panel.
 	 */
 	public Patient_sec_pan() {
-		setBackground(new Color(175, 238, 238));
+		setBackground(new Color(0, 206, 209));
 		setLayout(null);
 		
 		JButton btn_afficher = new JButton("Afficher");
