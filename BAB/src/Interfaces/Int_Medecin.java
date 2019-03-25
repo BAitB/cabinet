@@ -28,6 +28,7 @@ public class Int_Medecin extends JFrame {
 	Patient_pan patien=new Patient_pan();
 	compte_pan compte=new compte_pan();
 	private JTable table;
+	
 	//private JLabel lblMonCompte;
 
 	/**
@@ -62,6 +63,7 @@ public class Int_Medecin extends JFrame {
 		panel.setBounds(0, 0, 217, 553);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
 		
 		JLabel lblSeDconnecter = new JLabel("Se d\u00E9connecter");
 		lblSeDconnecter.setBackground(new Color(245, 255, 250));
