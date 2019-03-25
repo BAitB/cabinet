@@ -80,12 +80,12 @@ public class Patient_sec_pan extends JPanel {
 		add(btn_delete);
 		
 		JButton btn_ajouter = new JButton("Ajouter");
-		btn_ajouter.setBackground(new Color(0, 139, 139));
+		btn_ajouter.setBackground(new Color(0, 206, 209));
 		btn_ajouter.setBounds(221, 437, 105, 25);
 		add(btn_ajouter);
 		
 		JButton btn_modifier = new JButton("Modifier");
-		btn_modifier.setBackground(new Color(0, 206, 209));
+		btn_modifier.setBackground(new Color(0, 255, 255));
 		btn_modifier.setBounds(334, 437, 105, 25);
 		add(btn_modifier);
 		
