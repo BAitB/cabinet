@@ -96,7 +96,7 @@ public class RDV_PAN extends JPanel {
 		});
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(353, 0, 525, 441);
+		scrollPane.setBounds(353, 0, 525, 431);
 		add(scrollPane);
 		
 		table = new JTable();
