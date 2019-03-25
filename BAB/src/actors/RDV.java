@@ -8,9 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import com.mysql.jdbc.Statement;
 
 
 public class RDV {
@@ -112,6 +116,21 @@ public class RDV {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public static void supprimer(JTextField Fieldid)
+	{
+		int id =Integer.parseInt(Fieldid.getText());
+		String req3="delete from rdv where idRDV='"+id+"'";
+		java.sql.Connection con=JDBC.getConnection();
+		try {
+		Statement stm=(Statement) con.createStatement();
+		stm.executeUpdate(req3);
+		
+		
+		}catch(SQLException ee){ ee.printStackTrace();}
+		
+		RDV_PAN.ListerButton.doClick();
+	
 	}
 	
 	

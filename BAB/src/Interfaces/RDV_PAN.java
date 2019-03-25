@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 import javax.swing.JToggleButton;
@@ -27,6 +28,8 @@ import javax.swing.JTextArea;
 import javax.swing.JSpinner;
 import java.awt.Component;
 import javax.swing.Box;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RDV_PAN extends JPanel {
 	private JTable table;
@@ -34,6 +37,8 @@ public class RDV_PAN extends JPanel {
 	static JComboBox combPatient;  ;
 	static JComboBox comboDoc;
 	static JComboBox comboSecretaire;
+	private JTextField Fieldid;
+	public static JButton ListerButton;
 
 	/**
 	 * Create the panel.
@@ -48,6 +53,7 @@ public class RDV_PAN extends JPanel {
 		panel_1.setLayout(null);
 		
 		JButton SupprimerButton = new JButton("Supprimer");
+	
 		SupprimerButton.setBounds(726, 21, 122, 27);
 		panel_1.add(SupprimerButton);
 		SupprimerButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
@@ -59,7 +65,7 @@ public class RDV_PAN extends JPanel {
 		ViderButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		ViderButton.setBackground(Color.WHITE);
 		
-		JButton ListerButton = new JButton("Lister");
+		 ListerButton = new JButton("Lister");
 		ListerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RDV. ListerRDV(table);
@@ -90,6 +96,7 @@ public class RDV_PAN extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
+		
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
@@ -140,25 +147,55 @@ public class RDV_PAN extends JPanel {
 		comboSecretaire.setBounds(195, 136, 135, 20);
 		panel.add(comboSecretaire);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(44, 307, 286, 98);
-		panel.add(textArea);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setEnabled(false);
-		spinner.setBounds(195, 48, 135, 20);
-		panel.add(spinner);
+		JTextArea AreaDesc = new JTextArea();
+		AreaDesc.setBounds(44, 307, 286, 98);
+		panel.add(AreaDesc);
 		
 		FieldDate = new JTextField();
 		FieldDate.setBounds(195, 234, 135, 20);
 		panel.add(FieldDate);
 		FieldDate.setColumns(10);
 		
+		Fieldid = new JTextField();
+		Fieldid.setEditable(false);
+		Fieldid.setBounds(197, 49, 133, 20);
+		panel.add(Fieldid);
+		Fieldid.setColumns(10);
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(0, 0, 0));
 		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		lblNewLabel.setBounds(0, 0, 878, 513);
 		add(lblNewLabel);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int indice=table.getSelectedRow();
+				String CINM= (String)table.getValueAt(indice, 0);
+				String CINP=(String) table.getValueAt(indice, 1);
+				String CINS=(String) table.getValueAt(indice, 2);
+				Date date= (Date) table.getValueAt(indice, 3);
+				String des= (String) table.getValueAt(indice, 4);
+				int id=(int) table.getValueAt(indice, 5);
+				
+				FieldDate.setText(String.valueOf(date));
+				AreaDesc.setText(des);
+				Fieldid.setText(String.valueOf(id));
+				
+				
+				combPatient.setSelectedItem(CINP);
+				comboDoc.setSelectedItem(CINM);
+				comboSecretaire.setSelectedItem(CINS);
+				
+			}
+		});
+		
+		
+		SupprimerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RDV.supprimer(Fieldid);
+			}
+		});
 
 	}
 }
