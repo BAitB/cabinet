@@ -60,6 +60,7 @@ public class RDV_PAN extends JPanel {
 		SupprimerButton.setBackground(Color.RED);
 		
 		JButton ViderButton = new JButton("Vider");
+		
 		ViderButton.setBounds(554, 23, 105, 23);
 		panel_1.add(ViderButton);
 		ViderButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
@@ -82,7 +83,7 @@ public class RDV_PAN extends JPanel {
 		ModifierButton.setBounds(165, 25, 105, 23);
 		panel_1.add(ModifierButton);
 		ModifierButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		ModifierButton.setBackground(Color.GREEN);
+		ModifierButton.setBackground(new Color(0, 153, 204));
 		
 		JButton AjouterButton = new JButton("Ajouter");
 		AjouterButton.setBounds(0, 25, 115, 23);
@@ -194,6 +195,13 @@ public class RDV_PAN extends JPanel {
 		SupprimerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RDV.supprimer(Fieldid);
+			}
+		});
+		ViderButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			FieldDate.setText("");
+			AreaDesc.setText("");
+				
 			}
 		});
 
