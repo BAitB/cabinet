@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import actors.RDV;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -110,7 +113,9 @@ public class Int_Secretaire extends JFrame {
 				panel_1.add(RP);
 				labelimg.setVisible(false);
 				acceuil.setVisible(false);
-				
+				RDV.ListeCINPatient(RDV_PAN.combPatient);
+				RDV.ListeCINMedecin(RDV_PAN.comboDoc);
+				RDV.ListeCINSecretaire(RDV_PAN.comboSecretaire);
 			}
 		});
 		lblRDV.setIcon(new ImageIcon("ressources\\icons8-health-checkup-30.png"));

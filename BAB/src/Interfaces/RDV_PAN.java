@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import DataBase.Helper;
 import DataBase.JDBC;
+import actors.RDV;
 //import com.mysql.jdbc.Statement;
 
 import javax.swing.JComboBox;
@@ -32,7 +33,10 @@ import javax.swing.Box;
 
 public class RDV_PAN extends JPanel {
 	private JTable table;
-	private JTextField textField;
+	private JTextField FieldDate;
+	static JComboBox combPatient,comboSecretaire,comboDoc  ;
+	
+	
 
 	/**
 	 * Create the panel.
@@ -61,15 +65,8 @@ public class RDV_PAN extends JPanel {
 		JButton ListerButton = new JButton("Lister");
 		ListerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				java.sql.Connection con=JDBC.getConnection();
-				String req="select * from rdv ";
-				try {
-				java.sql.Statement stm=(java.sql.Statement) con.createStatement();
-				ResultSet rs=stm.executeQuery(req);
-				DefaultTableModel dtm=Helper.buildTableModel(rs);
-				table.setModel(dtm);
-				}
-				catch(SQLException e){ e.printStackTrace();}
+				RDV. ListerRDV(table);
+				
 			}	
 			
 		});
@@ -96,7 +93,7 @@ public class RDV_PAN extends JPanel {
 		});
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(353, 0, 525, 441);
+		scrollPane.setBounds(353, 0, 525, 407);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -138,17 +135,17 @@ public class RDV_PAN extends JPanel {
 		lblNewLabel_5.setBounds(42, 51, 135, 14);
 		panel.add(lblNewLabel_5);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(195, 185, 135, 20);
-		panel.add(comboBox);
+		comboDoc = new JComboBox();
+		comboDoc.setBounds(195, 185, 135, 20);
+		panel.add(comboDoc);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(195, 91, 135, 20);
-		panel.add(comboBox_1);
+		 combPatient = new JComboBox();
+		combPatient.setBounds(195, 91, 135, 20);
+		panel.add(combPatient);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(195, 136, 135, 20);
-		panel.add(comboBox_2);
+		comboSecretaire = new JComboBox();
+		comboSecretaire.setBounds(195, 136, 135, 20);
+		panel.add(comboSecretaire);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(44, 307, 286, 98);
@@ -159,10 +156,10 @@ public class RDV_PAN extends JPanel {
 		spinner.setBounds(195, 48, 135, 20);
 		panel.add(spinner);
 		
-		textField = new JTextField();
-		textField.setBounds(195, 234, 135, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		FieldDate = new JTextField();
+		FieldDate.setBounds(195, 234, 135, 20);
+		panel.add(FieldDate);
+		FieldDate.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(0, 0, 0));
