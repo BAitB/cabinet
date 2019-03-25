@@ -1,11 +1,11 @@
 package actors;
 
 public class Medecin{
-	private String nomM;
-	private String prenomM;
-	private String cinM;
-	private String specialite;
-	private String telM;
+	String nomM;
+	String prenomM;
+	String cinM;
+    String specialite;
+    String telM;
 	public Medecin(String nomM, String prenomM, String cinM, String specialite, String telM) {
 		super();
 		this.nomM = nomM;
