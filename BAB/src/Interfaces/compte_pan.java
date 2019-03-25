@@ -10,8 +10,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import com.mysql.jdbc.Statement;
+
+import DataBase.JDBC;
+import actors.Secretaire;
+
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 
 public class compte_pan extends JPanel {
 	private JTextField textField;
@@ -29,6 +37,7 @@ public class compte_pan extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	
 	public compte_pan() {
 		setLayout(null);
 		
@@ -153,7 +162,42 @@ public class compte_pan extends JPanel {
 		add(button_1);
 		button_1.setVisible(false);
 		
+		
 		JButton btnSauvegarder = new JButton("SAUVEGARDER");
+		btnSauvegarder.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String log=textField_1.getText();
+				String passe=(String)(passwordField.getText());
+				if(Secretaire.getProfil(log, passe)==1)
+				{
+					String prenom=textField.getText();
+					String nom=textField_4.getText();
+					 log=textField_1.getText();
+					String cin=textField_2.getText();
+					String tel=textField_3.getText();
+					 passe=(String)(passwordField.getText());
+					String req="INSERT INTO authentification VALUES('"+log+"','"+passe+"',1)";
+					String req2="INSERT INTO secretaire VALUES('"+cin+"','"+nom+"','"+prenom+"',null,'"+passe+"','"+tel+"')";
+					try {
+						java.sql.Connection conn =	JDBC.getConnection();
+						Statement stm;
+						stm=(Statement) conn.createStatement();
+						stm.executeUpdate(req);
+						stm.executeUpdate(req2);
+						}
+						catch(Exception e1)
+		        		{
+		        			e1.printStackTrace();
+		        		}
+					 
+				}
+				else if(Secretaire.getProfil(log, passe)==2)
+				{
+					
+				}
+			}
+		});
 		btnSauvegarder.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 13));
 		btnSauvegarder.setIcon(new ImageIcon("ressources\\save.png"));
 		btnSauvegarder.setBounds(637, 365, 187, 35);
@@ -234,6 +278,40 @@ public class compte_pan extends JPanel {
 		label.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label.setBounds(-20, 0, 899, 481);
 		add(label);
+		actualiser();
+	}
+	public   void actualiser()
+	{
+		String log=textField_1.getText();
+		String passe=(String)(passwordField.getText());
+		String req="select cinM,nomM,prenomM,login,password,telM from medecin";
 		
+		//String req2="select cinS,nomS,prenomS,login,password,telS from secretaire";
+	
+		
+		try {
+			java.sql.Connection conn =	JDBC.getConnection();
+			Statement stm;
+			stm=(Statement) conn.createStatement();
+		
+				stm.executeQuery(req);
+				ResultSet res=(ResultSet) stm.executeQuery(req);
+				res.next();
+				textField_2.setText(res.getString(1));
+				textField_4.setText(res.getString(2));
+				textField.setText(res.getString(3));
+				textField_1.setText(res.getString(4));
+				passwordField.setText(res.getString(5));
+				textField_3.setText(res.getString(6));
+				
+			}
+			catch(Exception e1)
+    		{
+    			e1.printStackTrace();
+    		}
+		
+		
+		
+		 
 	}
 }

@@ -1,10 +1,18 @@
 package actors;
 
+import java.sql.ResultSet;
+
+import com.mysql.jdbc.Statement;
+
+import DataBase.JDBC;
+
 public class Secretaire {
 	String nomS;
 	String prenomS;
 	String cinS;
 	String telS;
+	String login;
+	String password;
 	public Secretaire(String nomS, String prenomS, String cinS, String telS) {
 		super();
 		this.nomS = nomS;
@@ -36,5 +44,23 @@ public class Secretaire {
 	public void setTelS(String telS) {
 		this.telS = telS;
 	}
-
+   public static int getProfil(String login,String password)
+   {
+	   int resultat=-1;
+	   String req="select profil from authentification where login='"+login+"'and password='"+password+"'";
+	   try {
+			java.sql.Connection conn =JDBC.getConnection();
+			Statement stm;
+			stm=(Statement) conn.createStatement();
+			ResultSet rs=stm.executeQuery(req);
+			rs.next();
+			int profil=rs.getInt(1);
+			resultat=profil;
+			}
+			catch(Exception e1)
+   		{
+   			e1.printStackTrace();
+   		}
+	   return resultat;
+   }
 }
