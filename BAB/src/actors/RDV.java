@@ -67,6 +67,7 @@ public class RDV {
 	public static void ListeCINPatient(JComboBox c){
 		java.sql.Connection con=JDBC.getConnection();
 		String req="select cinP from patient ";
+		c.removeAllItems();
 		try {
 			java.sql.Statement stm=(java.sql.Statement) con.createStatement();
 			ResultSet rs=stm.executeQuery(req);
@@ -83,6 +84,7 @@ public class RDV {
 	public static void ListeCINMedecin(JComboBox c){
 		java.sql.Connection con=JDBC.getConnection();
 		String req1="select cinM from medecin ";
+		c.removeAllItems();
 		try {
 			java.sql.Statement stm=(java.sql.Statement) con.createStatement();
 			ResultSet rs1=stm.executeQuery(req1);
@@ -98,6 +100,7 @@ public class RDV {
 	public static void ListeCINSecretaire(JComboBox cc){
 		java.sql.Connection con=JDBC.getConnection();
 		String req2="select cinS from secretaire ";
+		cc.removeAllItems();
 		try {
 			java.sql.Statement stm=(java.sql.Statement) con.createStatement();
 			ResultSet rs2=stm.executeQuery(req2);
