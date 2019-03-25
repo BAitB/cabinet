@@ -18,7 +18,9 @@ import javax.swing.DropMode;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import actors.Secretaire;
 public class Authentification extends JFrame {
 
 	private JPanel contentPane;
@@ -46,6 +48,7 @@ public class Authentification extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Authentification() {
 		setTitle("Authentification");
 		setResizable(false);
@@ -112,6 +115,26 @@ public class Authentification extends JFrame {
 		panel.add(label_2);
 		
 		JButton btnNewButton = new JButton("     LOGIN");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String log=(String)(txtUsername.getText());
+				Int_Secretaire sec=new Int_Secretaire();
+				Int_Medecin med=new Int_Medecin();
+				
+				String passe=(String)(passwordField.getText());
+				if(Secretaire.getProfil(log, passe)==1);
+				{
+					sec.setVisible(true);
+					setVisible(false);
+				}
+				 if(Secretaire.getProfil(log, passe)==2)
+				{
+				   sec.setVisible(false);	
+					med.setVisible(true);
+					setVisible(false);
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setIcon(new ImageIcon("ressources\\open-padlock.png"));

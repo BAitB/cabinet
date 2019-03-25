@@ -30,6 +30,7 @@ public class Int_Secretaire extends JFrame {
 
 	RDV_PAN RP=new RDV_PAN();
 	AcceuilS_pan acceuil=new AcceuilS_pan();
+	compte_pan compte=new compte_pan();
 	/**
 	 * Launch the application.
 	 */
@@ -90,7 +91,8 @@ public class Int_Secretaire extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				patient.setVisible(true);
-			    acceuil.setVisible(false);				
+			    acceuil.setVisible(false);	
+			    compte.setVisible(false);
 			    RP.setVisible(false);
 			    patient.setBounds(0, 90,866,846);
 			    //label_3.setVisible(false);
@@ -121,7 +123,8 @@ public class Int_Secretaire extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {	
 				RP.setBounds(0, 90,866,846);
 				patient.setVisible(false);
-			    acceuil.setVisible(false);				
+			    acceuil.setVisible(false);		
+			    compte.setVisible(false);
 			    RP.setVisible(true);
 				panel_1.add(RP);
 				labelimg.setVisible(false);
@@ -150,6 +153,16 @@ public class Int_Secretaire extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblMonCompte.setBackground(new Color(175, 238, 238));
 			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				compte.setBounds(0, 90,866,846);
+				patient.setVisible(false);
+			    acceuil.setVisible(false);
+			    RP.setVisible(false);
+			    compte.setVisible(true);
+				panel_1.add(compte);
+				labelimg.setVisible(false);
+			}
 		});
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
 		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);
@@ -173,7 +186,10 @@ public class Int_Secretaire extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				acceuil.setBounds(0, 90,866,846);
-				acceuil.setVisible(true);
+				patient.setVisible(false);
+			    compte.setVisible(false);
+			    RP.setVisible(false);
+			    acceuil.setVisible(true);
 				panel_1.add(acceuil);
 				labelimg.setVisible(false);
 			}
