@@ -26,6 +26,7 @@ public class Int_Secretaire extends JFrame {
 	private JLabel magana;
 	JPanel panel_1;
 	JLabel labelimg;
+	Patient_sec_pan patient=new Patient_sec_pan();
 
 	RDV_PAN RP=new RDV_PAN();
 	AcceuilS_pan acceuil=new AcceuilS_pan();
@@ -86,6 +87,16 @@ public class Int_Secretaire extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblpatient.setBackground(new Color(175, 238, 238));
 			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				patient.setVisible(true);
+			    acceuil.setVisible(false);				
+			    RP.setVisible(false);
+			    patient.setBounds(0, 90,866,846);
+			    //label_3.setVisible(false);
+			//lblNewLabel_1.setOpaque(true);
+			panel_1.add(patient);
+			}
 		});
 		lblpatient.setIcon(new ImageIcon("ressources\\icons8-\u00EAtre-malade-36.png"));
 		lblpatient.setHorizontalAlignment(SwingConstants.LEFT);
@@ -109,7 +120,9 @@ public class Int_Secretaire extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {	
 				RP.setBounds(0, 90,866,846);
-				RP.setVisible(true);
+				patient.setVisible(false);
+			    acceuil.setVisible(false);				
+			    RP.setVisible(true);
 				panel_1.add(RP);
 				labelimg.setVisible(false);
 				acceuil.setVisible(false);

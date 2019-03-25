@@ -90,11 +90,6 @@ public class Int_Medecin extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBackground(new Color(240, 255, 240));
-		lblNewLabel_1.setBounds(209, 0, 666, 90);
-		panel_1.add(lblNewLabel_1);
-		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(175, 238, 238));
 		panel_3.setBounds(12, 0, 187, 70);
@@ -191,7 +186,7 @@ public class Int_Medecin extends JFrame {
 				
 				patien.setBounds(0, 90,866,846);
 				label_3.setVisible(false);
-				lblNewLabel_1.setOpaque(true);
+			//	lblNewLabel_1.setOpaque(true);
 				panel_1.add(patien);
 				
 				
@@ -216,7 +211,7 @@ public class Int_Medecin extends JFrame {
 				compte.setVisible(true);
 				compte.setBounds(0, 90,866,846);
 				label_3.setVisible(false);
-				lblNewLabel_1.setOpaque(true);
+				//lblNewLabel_1.setOpaque(true);
 				panel_1.add(compte);
 			}
 		});
@@ -262,6 +257,8 @@ public class Int_Medecin extends JFrame {
 		    @Override
 		    public void run() {
 		        while (true) { magana.setText(sa3a());
+		     
+		  
 		            try {
 		                sleep(500); 
 		            } catch (InterruptedException ie) {

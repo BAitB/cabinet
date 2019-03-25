@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
@@ -19,8 +18,6 @@ import javax.swing.table.DefaultTableModel;
 
 
 
-import DataBase.Helper;
-import DataBase.JDBC;
 import actors.RDV;
 //import com.mysql.jdbc.Statement;
 
@@ -34,9 +31,9 @@ import javax.swing.Box;
 public class RDV_PAN extends JPanel {
 	private JTable table;
 	private JTextField FieldDate;
-	static JComboBox combPatient,comboSecretaire,comboDoc  ;
-	
-	
+	static JComboBox combPatient;  ;
+	static JComboBox comboDoc;
+	static JComboBox comboSecretaire;
 
 	/**
 	 * Create the panel.
@@ -86,11 +83,7 @@ public class RDV_PAN extends JPanel {
 		panel_1.add(AjouterButton);
 		AjouterButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		AjouterButton.setBackground(new Color(144, 238, 144));
-		ViderButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(353, 0, 525, 407);
