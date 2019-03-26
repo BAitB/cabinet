@@ -1,6 +1,11 @@
 package actors;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.LinkedList;
+
+
 
 public class Patient {
 	String nomP;
@@ -77,6 +82,19 @@ public class Patient {
 	}
 	public void setTelP(String telP) {
 		this.telP = telP;
+	}
+	public static void insert(String n, String p, String l, String pass, String pr) {
+		String req="Insert into utilisateur values(NULL,'"+n+"','"+p+"','"+l+"','"+pass+"','"+Integer.parseInt(pr)+"')";
+		Connection conn=DataBase.JDBC.getConnection();
+		try {
+			
+			Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			stmt.executeUpdate(req);
+			
+			
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
 	}
 	
 	
