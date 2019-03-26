@@ -24,7 +24,7 @@ import actors.Secretaire;
 public class Authentification extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtUsername;
+	public static JTextField txtUsername;
 	int ilog=0;
 	int ipass=0;
 	private JPasswordField passwordField;

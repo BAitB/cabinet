@@ -178,13 +178,13 @@ public class compte_pan extends JPanel {
 					String tel=textField_3.getText();
 					 passe=(String)(passwordField.getText());
 					String req="INSERT INTO authentification VALUES('"+log+"','"+passe+"',1)";
-					String req2="INSERT INTO secretaire VALUES('"+cin+"','"+nom+"','"+prenom+"',null,'"+passe+"','"+tel+"')";
+					//String req2="INSERT INTO secretaire VALUES('"+cin+"','"+nom+"','"+prenom+"',null,'"+passe+"','"+tel+"')";
 					try {
 						java.sql.Connection conn =	JDBC.getConnection();
 						Statement stm;
 						stm=(Statement) conn.createStatement();
 						stm.executeUpdate(req);
-						stm.executeUpdate(req2);
+						//stm.executeUpdate(req2);
 						}
 						catch(Exception e1)
 		        		{
@@ -278,13 +278,14 @@ public class compte_pan extends JPanel {
 		label.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label.setBounds(-20, 0, 899, 481);
 		add(label);
+		System.out.println();
 		actualiser();
 	}
 	public   void actualiser()
 	{
 		String log=textField_1.getText();
 		String passe=(String)(passwordField.getText());
-		String req="select cinM,nomM,prenomM,login,password,telM from medecin";
+		String req="select cinM,nomM,prenomM,login,password,telM from medecin where login='"+Authentification.txtUsername.getText()+"'";
 		
 		//String req2="select cinS,nomS,prenomS,login,password,telS from secretaire";
 	
