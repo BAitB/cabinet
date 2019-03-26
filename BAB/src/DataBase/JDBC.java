@@ -30,7 +30,7 @@ public class JDBC{
             System.out.println("connecxion echoué");
             System.err.println(e);
         }
-        String url="jdbc:mysql://localhost:3306/cabinet";
+        String url="jdbc:mysql://localhost:3306/cabinet?useSSL=false";
         try {  
             con =DriverManager.getConnection(url,"root","");
             System.out.println("base de donnée est connectée"); 

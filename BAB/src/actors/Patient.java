@@ -7,6 +7,8 @@ import java.util.LinkedList;
 
 
 
+
+
 public class Patient {
 	String nomP;
 	String prenomP;
@@ -83,8 +85,8 @@ public class Patient {
 	public void setTelP(String telP) {
 		this.telP = telP;
 	}
-	public static void insert(String n, String p, String l, String pass, String pr) {
-		String req="Insert into utilisateur values(NULL,'"+n+"','"+p+"','"+l+"','"+pass+"','"+Integer.parseInt(pr)+"')";
+	public static void insert(String cin,String n, String p, String adresse, String tel, String sexe, int age) {
+		String req="Insert into patient values('"+cin+"','"+n+"','"+p+"','"+sexe+"','"+age+"','','"+adresse+"','"+tel+"')";
 		Connection conn=DataBase.JDBC.getConnection();
 		try {
 			
@@ -95,6 +97,25 @@ public class Patient {
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
+	
+	}
+	public static ResultSet all() {
+		String req="SELECT * from patient ";
+		Connection conn=DataBase.JDBC.getConnection();
+		ResultSet rs=null;
+		try {
+			
+			Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs=stmt.executeQuery(req);
+		
+			
+			
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		return rs;
+
+		
 	}
 	
 	
