@@ -14,12 +14,12 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 
 public class Patient_sec_pan extends JPanel {
-	private JTable table;
 	private JTextField nom_tf;
 	private JTextField prenom_tf;
 	private JTextField cin_tf;
 	private JTextField age_tf;
 	private JTextField tel_tf;
+	private JTable table_1;
 
 	/**
 	 * Create the panel.
@@ -40,10 +40,6 @@ public class Patient_sec_pan extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(221, 402, 657, -400);
 		add(scrollPane);
-		
-		table = new JTable();
-		table.setBounds(0, 0, 1, 1);
-		add(table);
 		
 		nom_tf = new JTextField();
 		nom_tf.setBounds(12, 23, 200, 29);
@@ -120,6 +116,19 @@ public class Patient_sec_pan extends JPanel {
 		JComboBox cb_sexe = new JComboBox();
 		cb_sexe.setBounds(12, 211, 200, 22);
 		add(cb_sexe);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(220, 0, 658, 433);
+		add(panel);
+		panel.setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(656, 430, -656, -430);
+		panel.add(scrollPane_1);
+		
+		table_1 = new JTable();
+		table_1.setBounds(0, 0, 1, 1);
+		panel.add(table_1);
 
 	}
 }
