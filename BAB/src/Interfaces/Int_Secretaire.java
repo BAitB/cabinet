@@ -162,6 +162,7 @@ public class Int_Secretaire extends JFrame {
 			    compte.setVisible(true);
 				panel_1.add(compte);
 				labelimg.setVisible(false);
+				compte.actualiser();
 			}
 		});
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));

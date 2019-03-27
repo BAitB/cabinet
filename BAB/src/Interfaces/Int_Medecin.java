@@ -215,6 +215,7 @@ public class Int_Medecin extends JFrame {
 				label_3.setVisible(false);
 				//lblNewLabel_1.setOpaque(true);
 				panel_1.add(compte);
+				compte.actualiser();
 			}
 		});
 		JLabel lblNewLabel = new JLabel("      Acceuil");

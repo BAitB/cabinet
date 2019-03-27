@@ -27,7 +27,8 @@ public class Authentification extends JFrame {
 	public static JTextField txtUsername;
 	int ilog=0;
 	int ipass=0;
-	private JPasswordField passwordField;
+	public static JPasswordField passwordField;
+	private JLabel lblerreur;
 
 	/**
 	 * Launch the application.
@@ -115,26 +116,31 @@ public class Authentification extends JFrame {
 		panel.add(label_2);
 		
 		JButton btnNewButton = new JButton("     LOGIN");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				String log=(String)(txtUsername.getText());
 				Int_Secretaire sec=new Int_Secretaire();
 				Int_Medecin med=new Int_Medecin();
 				
 				String passe=(String)(passwordField.getText());
+				
 				if(Secretaire.getProfil(log, passe)==1);
 				{
 					sec.setVisible(true);
 					setVisible(false);
 				}
+				
 				 if(Secretaire.getProfil(log, passe)==2)
 				{
 				   sec.setVisible(false);	
 					med.setVisible(true);
 					setVisible(false);
 				}
+				 //lblerreur.setVisible(true);
 			}
 		});
+		
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setIcon(new ImageIcon("ressources\\open-padlock.png"));
@@ -153,5 +159,12 @@ public class Authentification extends JFrame {
 		label.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label.setBounds(0, 0, 482, 553);
 		panel.add(label);
+		
+		lblerreur = new JLabel("Mot de passe ou login incorrect !!");
+		lblerreur.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblerreur.setForeground(Color.RED);
+		lblerreur.setBounds(192, 380, 177, 14);
+		panel.add(lblerreur);
+		lblerreur.setVisible(false);
 	}
 }
