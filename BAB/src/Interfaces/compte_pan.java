@@ -2,6 +2,7 @@ package Interfaces;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -159,6 +160,30 @@ public class compte_pan extends JPanel {
 		txtNouveauMotDe.setVisible(false);
 		
 		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String passeAnc=txtMotDePasse.getText();
+				String passeNouv= txtNouveauMotDe.getText();
+			    String passe=Authentification.passwordField.getText();
+			    String req="UPDATE authentification SET password='"+passeNouv+"' WHERE login='"+Authentification.txtUsername.getText()+"'";
+			    if(passeAnc.equals(passe))
+			    {
+			    	try {
+						java.sql.Connection conn =	JDBC.getConnection();
+						Statement stm;
+						stm=(Statement) conn.createStatement();
+						 stm.executeUpdate(req);
+						 JOptionPane.showMessageDialog(null, "Votre mot de passe est à jour");
+						 
+						}
+						catch(Exception e1)
+		        		{
+		        			e1.printStackTrace();
+		        		}
+			    }
+			    else JOptionPane.showMessageDialog(null,"Le mot de passe actuell est incorrect" ,"Erreur",  JOptionPane.ERROR_MESSAGE); 
+			}
+		});
 		button_1.setIcon(new ImageIcon("ressources\\done.png"));
 		button_1.setBounds(582, 314, 32, 28);
 		add(button_1);
@@ -174,17 +199,23 @@ public class compte_pan extends JPanel {
 				String nom=textField_4.getText();
 				String cin=textField_2.getText();
 				String tel=textField_3.getText();
-				String req2="UPDATE medecin SET cinM='"+cin+"',nomM='"+nom+"',prenomM='"+prenom+"',login='"+log+"',password='"+passe+"',telM='"+tel+"' where login='"+Authentification.txtUsername+"'";
-				//String req="UPDATE medecin SET prenomM='"+prenom+"' where login='"+Authentification.txtUsername+"'";
-			//String req="UPDATE authentification SET login='"+log+"',password='"+passe+"',profil=2 where login='"+Authentification.txtUsername+"'";
+				
+				String req2="UPDATE medecin SET cinM='"+cin+"',nomM='"+nom+"',prenomM='"+prenom+"',login='"+log+"',password='"+passe+"',telM='"+tel+"' where login='"+Authentification.txtUsername.getText()+"'";
+				String req="UPDATE secretaire SET cinS='"+cin+"',nomS='"+nom+"',prenomS='"+prenom+"',login='"+log+"',password='"+passe+"',telS='"+tel+"' where login='"+Authentification.txtUsername.getText()+"'";
 				try {
 					java.sql.Connection conn =	JDBC.getConnection();
 					Statement stm;
 					stm=(Statement) conn.createStatement();
-					//System.out.println(log + passe +prenom+ nom+cin +tel);
-					//stm.executeUpdate(req);
-					stm.executeUpdate(req2);
-					System.out.println("dart update");
+					if(Secretaire.getProfil(log, passe)==2)
+					{
+						stm.executeUpdate(req2);
+						JOptionPane.showMessageDialog(null, "Les changements ont été bien effectués");
+					}
+					else if	(Secretaire.getProfil(log, passe)==1)
+					{   
+						 stm.executeUpdate(req);
+						JOptionPane.showMessageDialog(null, "Les changements ont été bien effectués");
+					}
 					}
 					catch(Exception e1)
 	        		{
