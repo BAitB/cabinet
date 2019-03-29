@@ -36,6 +36,7 @@ public class compte_pan extends JPanel {
 	boolean hello=true;
 	int passClick1=0;
 	int passClick2=0;
+	int modif=0;
 
 	/**
 	 * Create the panel.
@@ -249,6 +250,9 @@ public class compte_pan extends JPanel {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(modif==0)
+				{
+					button_2.setText("Annuler la modification");
 				textField.setEditable(true);
 				textField_1.setEditable(true);
 				textField_2.setEditable(true);
@@ -256,12 +260,27 @@ public class compte_pan extends JPanel {
 				textField_4.setEditable(true);
 				//textField_5.setEditable(true);
 				btnSauvegarder.setVisible(true);
+				modif=1;
+				}
+				else {
+					button_2.setText("Modifier Mes info");
+					actualiser();
+					textField.setEditable(false);
+					textField_1.setEditable(false);
+					textField_2.setEditable(false);
+					textField_3.setEditable(false);
+					textField_4.setEditable(false);
+					//textField_5.setEditable(true);
+					btnSauvegarder.setVisible(false);
+					modif=0;
+					
+				}
 			}
 		});
 		button_2.setForeground(new Color(0, 0, 139));
 		button_2.setFont(new Font("Verdana", Font.BOLD, 12));
 		button_2.setBackground(new Color(255, 255, 204));
-		button_2.setBounds(560, 20, 171, 23);
+		button_2.setBounds(529, 20, 202, 23);
 		add(button_2);
 		
 		JLabel label_8 = new JLabel("");
