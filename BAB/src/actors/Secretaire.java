@@ -60,6 +60,7 @@ public class Secretaire {
 			catch(Exception e1)
    		{
    			e1.printStackTrace();
+   			System.out.println("mal9ithach");
    		}
 	   return resultat;
    }

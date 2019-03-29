@@ -105,6 +105,13 @@ public class Authentification extends JFrame {
 		passwordField.setBounds(128, 334, 268, 44);
 		panel.add(passwordField);
 		
+		lblerreur = new JLabel("Mot de passe ou login incorrect !!");
+		lblerreur.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblerreur.setForeground(Color.RED);
+		lblerreur.setBounds(192, 380, 177, 14);
+		panel.add(lblerreur);
+		lblerreur.setVisible(false);
+		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon("ressources\\closed-lock (1).png"));
 		label_1.setBounds(83, 334, 56, 44);
@@ -122,22 +129,22 @@ public class Authentification extends JFrame {
 				String log=(String)(txtUsername.getText());
 				Int_Secretaire sec=new Int_Secretaire();
 				Int_Medecin med=new Int_Medecin();
-				
 				String passe=(String)(passwordField.getText());
-				
-				if(Secretaire.getProfil(log, passe)==1);
+				switch(Secretaire.getProfil(log, passe))
 				{
-					sec.setVisible(true);
-					setVisible(false);
+				case 1:
+				     	sec.setVisible(true);
+			            setVisible(false);
+			        	break;
+				case 2: 
+				        med.setVisible(true);
+				        setVisible(false);
+			        	break;
+				
+				case -1:	lblerreur.setVisible(true);
+					
 				}
 				
-				 if(Secretaire.getProfil(log, passe)==2)
-				{
-				   sec.setVisible(false);	
-					med.setVisible(true);
-					setVisible(false);
-				}
-				 //lblerreur.setVisible(true);
 			}
 		});
 		
@@ -160,11 +167,6 @@ public class Authentification extends JFrame {
 		label.setBounds(0, 0, 482, 553);
 		panel.add(label);
 		
-		lblerreur = new JLabel("Mot de passe ou login incorrect !!");
-		lblerreur.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lblerreur.setForeground(Color.RED);
-		lblerreur.setBounds(192, 380, 177, 14);
-		panel.add(lblerreur);
-		lblerreur.setVisible(false);
+		
 	}
 }

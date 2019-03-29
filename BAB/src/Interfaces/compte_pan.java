@@ -338,11 +338,7 @@ public class compte_pan extends JPanel {
 				textField.setText(res.getString(3));
 				textField_1.setText(res.getString(4));
 				passwordField.setText(res.getString(5));
-				textField_3.setText(res.getString(6));
-				System.out.println("x");
-				
-		
-				
+				textField_3.setText(res.getString(6));	
 			}
 			catch(Exception e1)
     		{
