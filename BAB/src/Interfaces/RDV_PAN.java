@@ -30,6 +30,8 @@ import java.awt.Component;
 import javax.swing.Box;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RDV_PAN extends JPanel {
 	private JTable table;
@@ -39,6 +41,7 @@ public class RDV_PAN extends JPanel {
 	static JComboBox comboSecretaire;
 	private JTextField Fieldid;
 	public static JButton ListerButton;
+	private JTextField FieldFiltre;
 
 	/**
 	 * Create the panel.
@@ -93,7 +96,7 @@ public class RDV_PAN extends JPanel {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(353, 0, 525, 407);
+		scrollPane.setBounds(353, 31, 525, 376);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -141,6 +144,7 @@ public class RDV_PAN extends JPanel {
 		panel.add(comboDoc);
 		
 		 combPatient = new JComboBox();
+		 combPatient.setEditable(true);
 		combPatient.setBounds(195, 91, 135, 20);
 		panel.add(combPatient);
 		
@@ -164,10 +168,23 @@ public class RDV_PAN extends JPanel {
 		Fieldid.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("");
+		
 		lblNewLabel.setBackground(new Color(0, 0, 0));
 		lblNewLabel.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		lblNewLabel.setBounds(0, 0, 878, 513);
 		add(lblNewLabel);
+		
+		FieldFiltre = new JTextField();
+		FieldFiltre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String valR=FieldFiltre.getText();
+				RDV. Filter(valR,table);
+			}
+		});
+		FieldFiltre.setBounds(354, 0, 146, 31);
+		add(FieldFiltre);
+		FieldFiltre.setColumns(10);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -182,6 +199,7 @@ public class RDV_PAN extends JPanel {
 				FieldDate.setText(String.valueOf(date));
 				AreaDesc.setText(des);
 				Fieldid.setText(String.valueOf(id));
+				
 				
 				
 				combPatient.setSelectedItem(CINP);
@@ -204,6 +222,9 @@ public class RDV_PAN extends JPanel {
 				
 			}
 		});
+		
+		RDV.FiltereJcomboBox(combPatient);
 
 	}
+	
 }
