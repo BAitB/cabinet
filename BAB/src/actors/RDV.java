@@ -116,6 +116,7 @@ public class RDV {
 		}
 	}
 	public static void ListeCINSecretaire(JComboBox cc){
+		int indice=0;
 		java.sql.Connection con=JDBC.getConnection();
 		String req2="select nomS,cinS from secretaire ";
 		hS=new HashMap();
@@ -126,6 +127,8 @@ public class RDV {
 			while(rs2.next())
 			{
 				cc.addItem(rs2.getString(1)+" - "+rs2.getString(2));
+				hS.put(indice,rs2.getString(2));
+				indice++;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -162,10 +165,30 @@ public class RDV {
 		try {
 		Statement stm=(Statement) co.createStatement();
 		stm.executeUpdate(req);
+		
 		}catch(SQLException ee){ ee.printStackTrace();}
 		RDV_PAN.ListerButton.doClick();
 	}
 	
+	public static void Modifier(JTextField id,JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextArea des )
+	{
+		int iden=Integer.parseInt(id.getText());
+		int idp=cp.getSelectedIndex();
+		int ids=cs.getSelectedIndex();
+		int idm=cm.getSelectedIndex();
+		String CINM=(String) hM.get(idm);
+		String CINS=(String) hS.get(ids);
+		String CINP=(String) hP.get(idp);
+		String dt=d.getText();
+		String ds=des.getText();
+		String req="UPDATE rdv SET cinM='"+CINM+"',cinP='"+CINP+"',cinS='"+CINS+"',date='"+dt+"',description='"+ds+"' where idRDV='"+iden+"'";
+		java.sql.Connection co=JDBC.getConnection();
+		try {
+			Statement stm=(Statement) co.createStatement();
+			 stm.executeUpdate(req);
+		}catch(SQLException ee){ ee.printStackTrace();}
+		RDV_PAN.ListerButton.doClick();
+	}
 	public static void Filter(String valR,JTable table)
 	{
 		
@@ -179,7 +202,7 @@ public class RDV {
 		
 		}catch(SQLException ee){ ee.printStackTrace();}
 		
-		
+		RDV_PAN.ListerButton.doClick();
 	
 	}
 	public static void  FiltereJcomboBox(JComboBox c)

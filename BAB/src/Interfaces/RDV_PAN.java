@@ -90,6 +90,7 @@ public class RDV_PAN extends JPanel {
 		JButton ModifierButton = new JButton("Modifier");
 		ModifierButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RDV.Modifier(Fieldid,comboDoc, combPatient, comboSecretaire, FieldDate, AreaDesc);
 			}
 		});
 		ModifierButton.setBounds(165, 25, 105, 23);
