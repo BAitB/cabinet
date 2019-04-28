@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -18,7 +19,7 @@ import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 
 
-
+import Interfaces.Int_Secretaire;
 import actors.RDV;
 //import com.mysql.jdbc.Statement;
 
@@ -42,6 +43,7 @@ public class RDV_PAN extends JPanel {
 	private JTextField Fieldid;
 	public static JButton ListerButton;
 	private JTextField FieldFiltre;
+	JTextArea AreaDesc;
 
 	/**
 	 * Create the panel.
@@ -56,6 +58,7 @@ public class RDV_PAN extends JPanel {
 		panel_1.setLayout(null);
 		
 		JButton SupprimerButton = new JButton("Supprimer");
+		SupprimerButton.setIcon(new ImageIcon("ressources\\supprimer.png"));
 	
 		SupprimerButton.setBounds(726, 21, 122, 27);
 		panel_1.add(SupprimerButton);
@@ -63,6 +66,7 @@ public class RDV_PAN extends JPanel {
 		SupprimerButton.setBackground(Color.RED);
 		
 		JButton ViderButton = new JButton("Vider");
+		ViderButton.setIcon(new ImageIcon("ressources\\gomme.png"));
 		
 		ViderButton.setBounds(554, 23, 105, 23);
 		panel_1.add(ViderButton);
@@ -70,6 +74,7 @@ public class RDV_PAN extends JPanel {
 		ViderButton.setBackground(Color.WHITE);
 		
 		 ListerButton = new JButton("Lister");
+		 ListerButton.setIcon(new ImageIcon("ressources\\liste.png"));
 		ListerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RDV. ListerRDV(table);
@@ -83,12 +88,18 @@ public class RDV_PAN extends JPanel {
 		ListerButton.setBackground(new Color(127, 255, 212));
 		
 		JButton ModifierButton = new JButton("Modifier");
+		ModifierButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		ModifierButton.setBounds(165, 25, 105, 23);
 		panel_1.add(ModifierButton);
 		ModifierButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		ModifierButton.setBackground(new Color(0, 153, 204));
 		
 		JButton AjouterButton = new JButton("Ajouter");
+		
+		AjouterButton.setIcon(new ImageIcon("ressources\\add (2).png"));
 		AjouterButton.setBounds(0, 25, 115, 23);
 		panel_1.add(AjouterButton);
 		AjouterButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
@@ -152,11 +163,12 @@ public class RDV_PAN extends JPanel {
 		comboSecretaire.setBounds(195, 136, 135, 20);
 		panel.add(comboSecretaire);
 		
-		JTextArea AreaDesc = new JTextArea();
+		 AreaDesc = new JTextArea();
 		AreaDesc.setBounds(44, 307, 286, 98);
 		panel.add(AreaDesc);
 		
 		FieldDate = new JTextField();
+		
 		FieldDate.setBounds(195, 234, 135, 20);
 		panel.add(FieldDate);
 		FieldDate.setColumns(10);
@@ -200,25 +212,38 @@ public class RDV_PAN extends JPanel {
 				AreaDesc.setText(des);
 				Fieldid.setText(String.valueOf(id));
 				
+				RDV.RetelechergerCombobox(CINM, RDV.hM, comboDoc);
+				RDV.RetelechergerCombobox(CINP, RDV.hP, combPatient);
+				RDV.RetelechergerCombobox(CINS, RDV.hS, comboSecretaire);
 				
 				
-				combPatient.setSelectedItem(CINP);
-				comboDoc.setSelectedItem(CINM);
-				comboSecretaire.setSelectedItem(CINS);
 				
 			}
 		});
 		
-		
+		AjouterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RDV.Ajouter(comboDoc,combPatient, comboSecretaire, FieldDate,AreaDesc);
+			}
+		});
 		SupprimerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RDV.supprimer(Fieldid);
+				int choix=JOptionPane.showConfirmDialog(null, "Vous-voulez vraiment supprimer l'enregistrement?","Supprimer",JOptionPane.YES_NO_OPTION);
+				if(choix==JOptionPane.YES_OPTION) 
+					
+				{
+					RDV.supprimer(Fieldid); 
+					ViderButton.doClick();
+					
+				}
+				
 			}
 		});
 		ViderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			FieldDate.setText("");
 			AreaDesc.setText("");
+			Fieldid.setText(""); 
 				
 			}
 		});

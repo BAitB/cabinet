@@ -9,5 +9,6 @@
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="lib" path="C:/Users/medot/git/cabinet/BAB/ressources/mysql-connector-java-5.1.45-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/medot/git/cabinet/BAB/ressources/swingx-core-1.6.2-autocompletition.jar"/>
+	<classpathentry kind="lib" path="C:/Users/medot/git/cabinet/BAB/ressources/JTattoo-1.6.11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

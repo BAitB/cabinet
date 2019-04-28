@@ -12,6 +12,7 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -146,6 +147,24 @@ public class RDV {
 		RDV_PAN.ListerButton.doClick();
 	
 	}
+	public static void Ajouter(JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextArea des)
+	{
+		int idp=cp.getSelectedIndex();
+		int ids=cs.getSelectedIndex();
+		int idm=cm.getSelectedIndex();
+		String CINM=(String) hM.get(idm);
+		String CINS=(String) hS.get(ids);
+		String CINP=(String) hP.get(idp);
+		String dt=d.getText();
+		String ds=des.getText();
+		String req="Insert into rdv values('"+CINM+"','"+CINP+"','"+CINS+"','"+dt+"','"+ds+"',NULL)";
+		java.sql.Connection co=JDBC.getConnection();
+		try {
+		Statement stm=(Statement) co.createStatement();
+		stm.executeUpdate(req);
+		}catch(SQLException ee){ ee.printStackTrace();}
+		RDV_PAN.ListerButton.doClick();
+	}
 	
 	public static void Filter(String valR,JTable table)
 	{
@@ -168,6 +187,17 @@ public class RDV {
 		c.setSelectedItem(" ");
 		AutoCompleteDecorator.decorate(c);
 	}
-		
+	
+	public static void RetelechergerCombobox(String CIN,HashMap h,JComboBox cm)  //cette fonction consistait a retelecharger le contenu des combobox apres la selection d'un enregistrement danq Jtable
+	{
+		for(int i=0;i<RDV.hM.size();i++)
+		{
+			if(CIN.equals(h.get(i)))
+			{
+				cm.setSelectedIndex(i);
+			}
+		}
+	}
+	
 	
 }
