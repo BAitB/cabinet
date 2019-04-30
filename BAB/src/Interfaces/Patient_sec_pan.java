@@ -6,12 +6,25 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+
+import DataBase.Helper;
+import actors.Patient;
+import actors.RDV;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import javax.swing.JTabbedPane;
+import javax.swing.ListSelectionModel;
 
 public class Patient_sec_pan extends JPanel {
 	private JTextField nom_tf;
@@ -19,7 +32,13 @@ public class Patient_sec_pan extends JPanel {
 	private JTextField cin_tf;
 	private JTextField age_tf;
 	private JTextField tel_tf;
-	private JTable table_1;
+	private JTable table;
+	JTextArea adr_ta;
+	JButton btn_ajouter ;
+	JButton btn_delete ;
+	JButton btn_modifier ;
+	private JComboBox<String> cb_sexe;
+	JButton btn_afficher;
 
 	/**
 	 * Create the panel.
@@ -28,18 +47,26 @@ public class Patient_sec_pan extends JPanel {
 		setBackground(new Color(0, 206, 209));
 		setLayout(null);
 		
-		JButton btn_afficher = new JButton("Afficher");
+		btn_afficher = new JButton("Afficher");
+		
 		btn_afficher.setBackground(new Color(175, 238, 238));
 		btn_afficher.addActionListener(new ActionListener() {
+			
+			@Override 
 			public void actionPerformed(ActionEvent arg0) {
-			}
+			
+				
+					try {
+						table.setModel(Helper.buildTableModel(Patient.all()));
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			
 		});
 		btn_afficher.setBounds(602, 437, 227, 25);
 		add(btn_afficher);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(221, 402, 657, -400);
-		add(scrollPane);
 		
 		nom_tf = new JTextField();
 		nom_tf.setBounds(12, 23, 200, 29);
@@ -61,7 +88,7 @@ public class Patient_sec_pan extends JPanel {
 		age_tf.setBounds(12, 262, 200, 29);
 		add(age_tf);
 		
-		JTextArea adr_ta = new JTextArea();
+		adr_ta = new JTextArea();
 		adr_ta.setBounds(12, 321, 200, 87);
 		add(adr_ta);
 		
@@ -70,17 +97,62 @@ public class Patient_sec_pan extends JPanel {
 		tel_tf.setBounds(12, 433, 200, 29);
 		add(tel_tf);
 		
-		JButton btn_delete = new JButton("Supprimer");
+		btn_delete = new JButton("Supprimer");
+		btn_delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int index =table.getSelectedRow();
+				String Cin=(String)table.getValueAt(index, 0);
+				int choix=JOptionPane.showConfirmDialog(null, "Vous-voulez vraiment supprimer l'enregistrement?","Supprimer",JOptionPane.YES_NO_OPTION);
+				if(choix==JOptionPane.YES_OPTION) 
+					
+				{
+					Patient.Delete(Cin);
+					btn_afficher.doClick();
+					
+				}
+				
+			}
+		});
 		btn_delete.setBackground(new Color(219, 112, 147));
 		btn_delete.setBounds(465, 437, 105, 25);
 		add(btn_delete);
 		
-		JButton btn_ajouter = new JButton("Ajouter");
+	    btn_ajouter = new JButton("Ajouter");
+	    btn_ajouter.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0) {
+	    	String nom=	nom_tf.getText();
+	    	String prenom= prenom_tf.getText();
+	    	String CIN =cin_tf.getText();
+	    	String sexe =(String) cb_sexe.getSelectedItem();
+	        int age= Integer.parseInt(age_tf.getText());
+	    	String adresse =adr_ta.getText();
+	    	String telephone =tel_tf.getText();
+	    	Patient.insert(CIN, nom, prenom, adresse, telephone, sexe, age);
+	    	btn_afficher.doClick();
+	    	
+	    	
+	    		}
+	    });
 		btn_ajouter.setBackground(new Color(0, 206, 209));
 		btn_ajouter.setBounds(221, 437, 105, 25);
 		add(btn_ajouter);
 		
-		JButton btn_modifier = new JButton("Modifier");
+		 btn_modifier = new JButton("Modifier");
+		 btn_modifier.addActionListener(new ActionListener() {
+		    	@Override
+		    	public void actionPerformed(ActionEvent arg0) {
+		    	String nom=	nom_tf.getText();
+		    	String prenom= prenom_tf.getText();
+		    	String CIN =cin_tf.getText();
+		    	String sexe =(String) cb_sexe.getSelectedItem();
+		        int age= Integer.parseInt(age_tf.getText());
+		    	String adresse =adr_ta.getText();
+		    	String telephone =tel_tf.getText();
+		    	Patient.modifier(CIN, nom, prenom, adresse, telephone, sexe, age);
+		    	btn_afficher.doClick();  	
+		    		}
+		    });
 		btn_modifier.setBackground(new Color(0, 255, 255));
 		btn_modifier.setBounds(334, 437, 105, 25);
 		add(btn_modifier);
@@ -113,22 +185,51 @@ public class Patient_sec_pan extends JPanel {
 		lbl_tel.setBounds(12, 417, 71, 16);
 		add(lbl_tel);
 		
-		JComboBox cb_sexe = new JComboBox();
+		cb_sexe = new JComboBox<String>();
+		cb_sexe.setEditable(true);
+		cb_sexe.addItem("homme");
+		cb_sexe.addItem("femme");
 		cb_sexe.setBounds(12, 211, 200, 22);
 		add(cb_sexe);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(220, 0, 658, 433);
-		add(panel);
-		panel.setLayout(null);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(224, 23, 642, 385);
+		add(scrollPane);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(656, 430, -656, -430);
-		panel.add(scrollPane_1);
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setFillsViewportHeight(true);
 		
-		table_1 = new JTable();
-		table_1.setBounds(0, 0, 1, 1);
-		panel.add(table_1);
+		scrollPane.setViewportView(table);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int index=table.getSelectedRow();
+				String C=(String)table.getValueAt(index, 0);
+				String n=(String)table.getValueAt(index, 1);
+				String p=(String)table.getValueAt(index, 2);
+				String adr=(String)table.getValueAt(index, 6);
+				String sexe=(String)table.getValueAt(index, 3);
+				int age=(int)table.getValueAt(index, 4);
+				String telepho=(String)table.getValueAt(index, 7);
+				String ages=""+age;
+				System.out.println(C);
+			  	nom_tf.setText(n);
+		    	prenom_tf.setText(p);
+		    	cin_tf.setText(C);
+		    	if (sexe.equals("homme")) {
+		    		cb_sexe.setSelectedIndex(0);
+		    	}else {cb_sexe.setSelectedIndex(1);
+		    	
+		    	}
+		        age_tf.setText(ages);
+		    	adr_ta.setText(adr);
+		    	tel_tf.setText(telepho);
+			}
+		});
 
 	}
+	
+	
+	
 }
