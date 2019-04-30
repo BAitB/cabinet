@@ -221,6 +221,54 @@ public class RDV {
 			}
 		}
 	}
+	public static int countrdv() {
+		int hamid = 0;
+		String req="SELECT count(*) from rdv";
+		java.sql.Connection co=JDBC.getConnection();
+		try {
+		Statement stm=(Statement) co.createStatement();
+		ResultSet rs=stm.executeQuery(req);
+		rs.next();
+	    hamid=rs.getInt(1);
+		
 	
+		
+		}catch(SQLException ee){ ee.printStackTrace();}
+		
+	return hamid;
+		
+	}
+	public static int countpatient() {
+		int hamid = 0;
+		String req="SELECT count(*) from patient";
+		java.sql.Connection co=JDBC.getConnection();
+		try {
+		Statement stm=(Statement) co.createStatement();
+		ResultSet rs=stm.executeQuery(req);
+		rs.next();
+	    hamid=rs.getInt(1);
+		
+	
+		
+		}catch(SQLException ee){ ee.printStackTrace();}
+		
+	return hamid;
+		
+	}
+	
+	public static int countSA(String d)
+	{ 
+		int hamid = 0;
+		String req="SELECT count(*) from rdv where date='"+d+"'";
+		java.sql.Connection co=JDBC.getConnection();
+		try {
+		Statement stm=(Statement) co.createStatement();
+		ResultSet rs=stm.executeQuery(req);
+		rs.next();
+	    hamid=rs.getInt(1);
+		}catch(SQLException ee){ ee.printStackTrace();}
+		
+		return hamid;
+	}
 	
 }

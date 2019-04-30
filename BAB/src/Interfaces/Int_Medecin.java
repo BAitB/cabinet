@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DataBase.Helper;
+import actors.Patient;
 import actors.RDV;
 
 import java.awt.Color;
@@ -18,12 +20,15 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
 public class Int_Medecin extends JFrame {
 
@@ -33,6 +38,7 @@ public class Int_Medecin extends JFrame {
 	Patient_pan patien=new Patient_pan();
 	compte_pan compte=new compte_pan();
 	private JTable table;
+	private JLabel lblNewLabel_4,lblNewLabel_3 , lblSalleDattente;
 	
 	//private JLabel lblMonCompte;
 
@@ -56,10 +62,26 @@ public class Int_Medecin extends JFrame {
 	 * Create the frame.
 	 */
 	public Int_Medecin() {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				RDV.ListerRDV(table);
+				
+			}
+			@Override
+			public void windowActivated(WindowEvent e) {
+				RDV.ListerRDV(table);//rdv
+				try {
+					Patient_pan.table.setModel(Helper.buildTableModel(Patient.all()));
+					lblNewLabel_4 .setText("   Rendez vous  "+(RDV.countrdv()));
+					lblNewLabel_3.setText(" Nombre Patients  "+(RDV.countpatient()));
+					 lblSalleDattente.setText("    Salle d'Attente "+RDV.countSA(format.format(date)));
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,25 +148,29 @@ public class Int_Medecin extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JLabel lblNewLabel_4 = new JLabel("     Rendez vous");
+		
+		 lblNewLabel_4 = new JLabel("   Rendez vous  "+(RDV.countrdv()));
 		lblNewLabel_4.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		lblNewLabel_4.setIcon(new ImageIcon("ressources\\icons8-health-checkup-30.png"));
 		lblNewLabel_4.setBounds(654, 394, 185, 39);
 		AcceuilPanel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_3 = new JLabel("    Nombre Patients");
+		 lblNewLabel_3 = new JLabel(" Nombre Patients  "+(RDV.countpatient()));
 		lblNewLabel_3.setIcon(new ImageIcon("ressources\\icons8-appointment-scheduling-30.png"));
 		lblNewLabel_3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		lblNewLabel_3.setBounds(431, 394, 185, 39);
 		AcceuilPanel.add(lblNewLabel_3);
 		
-		JLabel lblSalleDattente = new JLabel("    Salle d'Attente");
+		
+		
+		 lblSalleDattente = new JLabel("    Salle d'Attente "+RDV.countSA(format.format(date)));
 		lblSalleDattente.setIcon(new ImageIcon("ressources\\icons8-waiting-room-30.png"));
 		lblSalleDattente.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		lblSalleDattente.setBounds(205, 394, 185, 39);
 		AcceuilPanel.add(lblSalleDattente);
 		
-		JLabel lblConsultations = new JLabel("   Consultations");
+		
+		JLabel lblConsultations = new JLabel("  Consultations  ");
 		lblConsultations.setIcon(new ImageIcon("ressources\\icons8-counselor-30.png"));
 		lblConsultations.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		lblConsultations.setBounds(10, 394, 185, 39);

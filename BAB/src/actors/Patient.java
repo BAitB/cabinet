@@ -150,4 +150,39 @@ public class Patient {
 	
 	
 	
-	}}
+	}
+	public static ResultSet filtrernom(String nom) {
+		String req="SELECT * from patient where nomP like '%" +nom+"%'";
+		Connection conn=DataBase.JDBC.getConnection();
+		ResultSet rs=null;
+		try {
+			
+			Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs=stmt.executeQuery(req);
+		
+			
+			
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		return rs;
+		
+	}
+	public static ResultSet filtrerprenom(String prenom) {
+		String req="SELECT * from patient where prenomP like '%" +prenom+"%'";
+		Connection conn=DataBase.JDBC.getConnection();
+		ResultSet rs=null;
+		try {
+			
+			Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs=stmt.executeQuery(req);
+		
+			
+			
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		return rs;
+		
+	}
+	}

@@ -8,17 +8,25 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import DataBase.Helper;
+import actors.Patient;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 
 public class Patient_pan extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	public static JTable table;
 	private JTextField textField;
+	private JComboBox<String> comboBox ;
 
 	/**
 	 * Create the panel.
@@ -32,6 +40,27 @@ public class Patient_pan extends JPanel {
 		add(lblEntrez);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(comboBox.getSelectedItem().equals("Nom")) {
+					try {
+						table.setModel(Helper.buildTableModel(Patient.filtrernom(textField.getText())));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}else if(comboBox.getSelectedItem().equals("Prénom")){ {try {
+					table.setModel(Helper.buildTableModel(Patient.filtrerprenom(textField.getText())));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
+				}
+			}}
+		});
 		textField.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 15));
 		textField.setBackground(new Color(175, 238, 238));
 		textField.setBounds(581, 12, 174, 33);
@@ -45,7 +74,7 @@ public class Patient_pan extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 14));
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
