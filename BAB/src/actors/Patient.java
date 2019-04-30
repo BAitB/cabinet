@@ -118,5 +118,21 @@ public class Patient {
 		
 	}
 	
+	public static void Delete(String CIN){
+		String req="Delete from patient where cinP='"+CIN+"'";
+		Connection conn=DataBase.JDBC.getConnection();
+		try {
+			
+			Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			stmt.executeUpdate(req);
+			
+			
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		
+		
+	}
+	
 	
 }

@@ -15,11 +15,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import javax.swing.JTabbedPane;
+import javax.swing.ListSelectionModel;
 
 public class Patient_sec_pan extends JPanel {
 	private JTextField nom_tf;
@@ -32,7 +35,7 @@ public class Patient_sec_pan extends JPanel {
 	JButton btn_ajouter ;
 	JButton btn_delete ;
 	JButton btn_modifier ;
-	JComboBox<String> cb_sexe;
+	private JComboBox<String> cb_sexe;
 	JButton btn_afficher;
 
 	/**
@@ -43,21 +46,22 @@ public class Patient_sec_pan extends JPanel {
 		setLayout(null);
 		
 		btn_afficher = new JButton("Afficher");
-		btn_afficher.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try {
-					table.setModel(Helper.buildTableModel(Patient.all()));
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+		
 		btn_afficher.setBackground(new Color(175, 238, 238));
 		btn_afficher.addActionListener(new ActionListener() {
+			
+			@Override 
 			public void actionPerformed(ActionEvent arg0) {
-			}
+			
+				
+					try {
+						table.setModel(Helper.buildTableModel(Patient.all()));
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			
 		});
 		btn_afficher.setBounds(602, 437, 227, 25);
 		add(btn_afficher);
@@ -92,14 +96,21 @@ public class Patient_sec_pan extends JPanel {
 		add(tel_tf);
 		
 		btn_delete = new JButton("Supprimer");
+		btn_delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int index =table.getSelectedRow();
+				String Cin=(String)table.getValueAt(index, 0);
+				Patient.Delete(Cin);
+			}
+		});
 		btn_delete.setBackground(new Color(219, 112, 147));
 		btn_delete.setBounds(465, 437, 105, 25);
 		add(btn_delete);
 		
 	    btn_ajouter = new JButton("Ajouter");
-	    btn_ajouter.addMouseListener(new MouseAdapter() {
+	    btn_ajouter.addActionListener(new ActionListener() {
 	    	@Override
-	    	public void mouseClicked(MouseEvent arg0) {
+	    	public void actionPerformed(ActionEvent arg0) {
 	    	String nom=	nom_tf.getText();
 	    	String prenom= prenom_tf.getText();
 	    	String CIN =cin_tf.getText();
@@ -162,7 +173,39 @@ public class Patient_sec_pan extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setFillsViewportHeight(true);
+		
 		scrollPane.setViewportView(table);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int index=table.getSelectedRow();
+				String C=(String)table.getValueAt(index, 0);
+				String n=(String)table.getValueAt(index, 1);
+				String p=(String)table.getValueAt(index, 2);
+				String adr=(String)table.getValueAt(index, 6);
+				String sexe=(String)table.getValueAt(index, 3);
+				int age=(int)table.getValueAt(index, 4);
+				String telepho=(String)table.getValueAt(index, 7);
+				String ages=""+age;
+				System.out.println(C);
+			  	nom_tf.setText(n);
+		    	prenom_tf.setText(p);
+		    	cin_tf.setText(C);
+		    	if (sexe.equals("homme")) {
+		    		cb_sexe.setSelectedIndex(0);
+		    	}else {cb_sexe.setSelectedIndex(1);
+		    	
+		    	}
+		        age_tf.setText(ages);
+		    	adr_ta.setText(adr);
+		    	tel_tf.setText(telepho);
+			}
+		});
 
 	}
+	
+	
+	
 }
