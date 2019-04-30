@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.JSplitPane;
 import java.awt.Font;
 import javax.swing.DropMode;
@@ -24,15 +25,30 @@ import actors.Secretaire;
 public class Authentification extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtUsername;
+	public static JTextField txtUsername;
 	int ilog=0;
 	int ipass=0;
-	private JPasswordField passwordField;
+	public static JPasswordField passwordField;
+	private JLabel lblerreur;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+            //here you can put the selected theme class name in JTattoo
+        
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");//theme 
+
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Int_Secretaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Int_Secretaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Int_Secretaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Int_Secretaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -104,6 +120,13 @@ public class Authentification extends JFrame {
 		passwordField.setBounds(128, 334, 268, 44);
 		panel.add(passwordField);
 		
+		lblerreur = new JLabel("Mot de passe ou login incorrect !!");
+		lblerreur.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblerreur.setForeground(Color.RED);
+		lblerreur.setBounds(192, 380, 177, 14);
+		panel.add(lblerreur);
+		lblerreur.setVisible(false);
+		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon("ressources\\closed-lock (1).png"));
 		label_1.setBounds(83, 334, 56, 44);
@@ -115,26 +138,31 @@ public class Authentification extends JFrame {
 		panel.add(label_2);
 		
 		JButton btnNewButton = new JButton("     LOGIN");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				String log=(String)(txtUsername.getText());
 				Int_Secretaire sec=new Int_Secretaire();
 				Int_Medecin med=new Int_Medecin();
-				
 				String passe=(String)(passwordField.getText());
-				if(Secretaire.getProfil(log, passe)==1);
+				switch(Secretaire.getProfil(log, passe))
 				{
-					sec.setVisible(true);
-					setVisible(false);
+				case 1:
+				     	sec.setVisible(true);
+			            setVisible(false);
+			        	break;
+				case 2: 
+				        med.setVisible(true);
+				        setVisible(false);
+			        	break;
+				
+				case -1:	lblerreur.setVisible(true);
+					
 				}
-				 if(Secretaire.getProfil(log, passe)==2)
-				{
-				   sec.setVisible(false);	
-					med.setVisible(true);
-					setVisible(false);
-				}
+				
 			}
 		});
+		
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setIcon(new ImageIcon("ressources\\open-padlock.png"));
@@ -153,5 +181,7 @@ public class Authentification extends JFrame {
 		label.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label.setBounds(0, 0, 482, 553);
 		panel.add(label);
+		
+		
 	}
 }

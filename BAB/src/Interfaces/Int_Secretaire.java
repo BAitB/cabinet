@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -36,6 +37,9 @@ public class Int_Secretaire extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -163,6 +167,7 @@ public class Int_Secretaire extends JFrame {
 			  //  compte.setVisible(true);
 			//	panel_1.add(compte);
 				labelimg.setVisible(false);
+				compte.actualiser();
 			}
 		});
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));

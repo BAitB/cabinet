@@ -2,6 +2,7 @@ package Interfaces;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -20,6 +21,8 @@ import actors.Secretaire;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class compte_pan extends JPanel {
 	private JTextField textField;
@@ -33,6 +36,7 @@ public class compte_pan extends JPanel {
 	boolean hello=true;
 	int passClick1=0;
 	int passClick2=0;
+	int modif=0;
 
 	/**
 	 * Create the panel.
@@ -157,6 +161,30 @@ public class compte_pan extends JPanel {
 		txtNouveauMotDe.setVisible(false);
 		
 		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String passeAnc=txtMotDePasse.getText();
+				String passeNouv= txtNouveauMotDe.getText();
+			    String passe=Authentification.passwordField.getText();
+			    String req="UPDATE authentification SET password='"+passeNouv+"' WHERE login='"+Authentification.txtUsername.getText()+"'";
+			    if(passeAnc.equals(passe))
+			    {
+			    	try {
+						java.sql.Connection conn =	JDBC.getConnection();
+						Statement stm;
+						stm=(Statement) conn.createStatement();
+						 stm.executeUpdate(req);
+						 JOptionPane.showMessageDialog(null, "Votre mot de passe est à jour");
+						 
+						}
+						catch(Exception e1)
+		        		{
+		        			e1.printStackTrace();
+		        		}
+			    }
+			    else JOptionPane.showMessageDialog(null,"Le mot de passe actuell est incorrect" ,"Erreur",  JOptionPane.ERROR_MESSAGE); 
+			}
+		});
 		button_1.setIcon(new ImageIcon("ressources\\done.png"));
 		button_1.setBounds(582, 314, 32, 28);
 		add(button_1);
@@ -164,40 +192,39 @@ public class compte_pan extends JPanel {
 		
 		
 		JButton btnSauvegarder = new JButton("SAUVEGARDER");
-		btnSauvegarder.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		btnSauvegarder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				String log=textField_1.getText();
-				String passe=(String)(passwordField.getText());
-				if(Secretaire.getProfil(log, passe)==1)
-				{
-					String prenom=textField.getText();
-					String nom=textField_4.getText();
-					 log=textField_1.getText();
-					String cin=textField_2.getText();
-					String tel=textField_3.getText();
-					 passe=(String)(passwordField.getText());
-					String req="INSERT INTO authentification VALUES('"+log+"','"+passe+"',1)";
-					String req2="INSERT INTO secretaire VALUES('"+cin+"','"+nom+"','"+prenom+"',null,'"+passe+"','"+tel+"')";
-					try {
-						java.sql.Connection conn =	JDBC.getConnection();
-						Statement stm;
-						stm=(Statement) conn.createStatement();
-						stm.executeUpdate(req);
+			    String passe=(String)(passwordField.getText());
+				String prenom=textField.getText();
+				String nom=textField_4.getText();
+				String cin=textField_2.getText();
+				String tel=textField_3.getText();
+				
+				String req2="UPDATE medecin SET cinM='"+cin+"',nomM='"+nom+"',prenomM='"+prenom+"',login='"+log+"',password='"+passe+"',telM='"+tel+"' where login='"+Authentification.txtUsername.getText()+"'";
+				String req="UPDATE secretaire SET cinS='"+cin+"',nomS='"+nom+"',prenomS='"+prenom+"',login='"+log+"',password='"+passe+"',telS='"+tel+"' where login='"+Authentification.txtUsername.getText()+"'";
+				try {
+					java.sql.Connection conn =	JDBC.getConnection();
+					Statement stm;
+					stm=(Statement) conn.createStatement();
+					if(Secretaire.getProfil(log, passe)==2)
+					{
 						stm.executeUpdate(req2);
-						}
-						catch(Exception e1)
-		        		{
-		        			e1.printStackTrace();
-		        		}
-					 
-				}
-				else if(Secretaire.getProfil(log, passe)==2)
-				{
-					
-				}
+						JOptionPane.showMessageDialog(null, "Les changements ont été bien effectués");
+					}
+					else if	(Secretaire.getProfil(log, passe)==1)
+					{   
+						 stm.executeUpdate(req);
+						JOptionPane.showMessageDialog(null, "Les changements ont été bien effectués");
+					}
+					}
+					catch(Exception e1)
+	        		{
+	        			e1.printStackTrace();
+	        		}
 			}
 		});
+		
 		btnSauvegarder.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 13));
 		btnSauvegarder.setIcon(new ImageIcon("ressources\\save.png"));
 		btnSauvegarder.setBounds(637, 365, 187, 35);
@@ -223,6 +250,9 @@ public class compte_pan extends JPanel {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(modif==0)
+				{
+					button_2.setText("Annuler la modification");
 				textField.setEditable(true);
 				textField_1.setEditable(true);
 				textField_2.setEditable(true);
@@ -230,12 +260,27 @@ public class compte_pan extends JPanel {
 				textField_4.setEditable(true);
 				//textField_5.setEditable(true);
 				btnSauvegarder.setVisible(true);
+				modif=1;
+				}
+				else {
+					button_2.setText("Modifier Mes info");
+					actualiser();
+					textField.setEditable(false);
+					textField_1.setEditable(false);
+					textField_2.setEditable(false);
+					textField_3.setEditable(false);
+					textField_4.setEditable(false);
+					//textField_5.setEditable(true);
+					btnSauvegarder.setVisible(false);
+					modif=0;
+					
+				}
 			}
 		});
 		button_2.setForeground(new Color(0, 0, 139));
 		button_2.setFont(new Font("Verdana", Font.BOLD, 12));
 		button_2.setBackground(new Color(255, 255, 204));
-		button_2.setBounds(560, 20, 171, 23);
+		button_2.setBounds(529, 20, 202, 23);
 		add(button_2);
 		
 		JLabel label_8 = new JLabel("");
@@ -278,32 +323,41 @@ public class compte_pan extends JPanel {
 		label.setIcon(new ImageIcon("ressources\\backgroud ki ma tle3.png"));
 		label.setBounds(-20, 0, 899, 481);
 		add(label);
-		actualiser();
-	}
-	public   void actualiser()
-	{
-		String log=textField_1.getText();
-		String passe=(String)(passwordField.getText());
-		String req="select cinM,nomM,prenomM,login,password,telM from medecin";
+		//System.out.println();
 		
-		//String req2="select cinS,nomS,prenomS,login,password,telS from secretaire";
+	}
+	public  void actualiser()
+	{
+		String log=Authentification.txtUsername.getText();
+		String passe=(String)(Authentification.passwordField.getText());
+		String req="select cinM,nomM,prenomM,login,password,telM from medecin where login='"+Authentification.txtUsername.getText()+"'";
+		
+		String req2="select cinS,nomS,prenomS,login,password,telS from secretaire where login='"+Authentification.txtUsername.getText()+"'";
 	
 		
 		try {
 			java.sql.Connection conn =	JDBC.getConnection();
+			
 			Statement stm;
 			stm=(Statement) conn.createStatement();
-		
+			ResultSet res = null;
+			if(Secretaire.getProfil(log, passe)==2)
+			{
 				stm.executeQuery(req);
-				ResultSet res=(ResultSet) stm.executeQuery(req);
+				 res=(ResultSet) stm.executeQuery(req);
+			}
+			else if(Secretaire.getProfil(log, passe)==1)
+			{
+				stm.executeQuery(req2);
+				 res=(ResultSet) stm.executeQuery(req2);
+			}
 				res.next();
 				textField_2.setText(res.getString(1));
 				textField_4.setText(res.getString(2));
 				textField.setText(res.getString(3));
 				textField_1.setText(res.getString(4));
 				passwordField.setText(res.getString(5));
-				textField_3.setText(res.getString(6));
-				
+				textField_3.setText(res.getString(6));	
 			}
 			catch(Exception e1)
     		{

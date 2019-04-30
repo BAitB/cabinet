@@ -21,11 +21,16 @@ public class AcceuilS_pan extends JPanel {
 		add(lblLaListeDattente);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 53, 815, 356);
+		scrollPane.setBounds(10, 53, 740, 356);
 		add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\HP\\git\\cabinet\\BAB\\ressources\\msg.png"));
+		label.setBounds(760, 184, 40, 31);
+		add(label);
 
 	}
 }
