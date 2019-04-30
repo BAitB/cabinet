@@ -38,7 +38,7 @@ public class Authentification extends JFrame {
 		try {
             //here you can put the selected theme class name in JTattoo
         
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");//theme 
+            UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");//theme 
 
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Int_Secretaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

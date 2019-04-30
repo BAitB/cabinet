@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import actors.RDV;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,6 +22,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Int_Medecin extends JFrame {
 
@@ -51,6 +56,12 @@ public class Int_Medecin extends JFrame {
 	 * Create the frame.
 	 */
 	public Int_Medecin() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				RDV.ListerRDV(table);
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 600);
 		contentPane = new JPanel();
@@ -235,6 +246,7 @@ public class Int_Medecin extends JFrame {
 				patien.setVisible(false);
 				AcceuilPanel.setVisible(true);				
 				compte.setVisible(false);
+				RDV.ListerRDV(table);
 			}
 		});
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));

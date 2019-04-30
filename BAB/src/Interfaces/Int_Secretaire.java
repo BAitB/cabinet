@@ -64,6 +64,7 @@ public class Int_Secretaire extends JFrame {
 				acceuil.setVisible(true);
 				panel_1.add(acceuil);
 				labelimg.setVisible(false);
+				//RDV.ListerRDV(table);
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
