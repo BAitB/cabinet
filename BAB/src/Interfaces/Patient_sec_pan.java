@@ -9,7 +9,9 @@ import javax.swing.JTextPane;
 
 import DataBase.Helper;
 import actors.Patient;
+
 import actors.RDV;
+
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -102,6 +104,7 @@ public class Patient_sec_pan extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				int index =table.getSelectedRow();
 				String Cin=(String)table.getValueAt(index, 0);
+
 				int choix=JOptionPane.showConfirmDialog(null, "Vous-voulez vraiment supprimer l'enregistrement?","Supprimer",JOptionPane.YES_NO_OPTION);
 				if(choix==JOptionPane.YES_OPTION) 
 					
@@ -110,7 +113,9 @@ public class Patient_sec_pan extends JPanel {
 					btn_afficher.doClick();
 					
 				}
-				
+
+				Patient.Delete(Cin);
+
 			}
 		});
 		btn_delete.setBackground(new Color(219, 112, 147));
@@ -139,6 +144,7 @@ public class Patient_sec_pan extends JPanel {
 		add(btn_ajouter);
 		
 		 btn_modifier = new JButton("Modifier");
+
 		 btn_modifier.addActionListener(new ActionListener() {
 		    	@Override
 		    	public void actionPerformed(ActionEvent arg0) {
@@ -153,6 +159,7 @@ public class Patient_sec_pan extends JPanel {
 		    	btn_afficher.doClick();  	
 		    		}
 		    });
+
 		btn_modifier.setBackground(new Color(0, 255, 255));
 		btn_modifier.setBounds(334, 437, 105, 25);
 		add(btn_modifier);

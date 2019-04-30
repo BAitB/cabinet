@@ -132,6 +132,7 @@ public class Patient {
 	}
 		
 		
+
 	}
 	public static void modifier(String cin,String n, String p, String adresse, String tel, String sexe, int age) {
 		String req="Update patient set nomP='"+n+"',prenomP='"+p+"',sexeP='"+sexe+"',ageP='"+age+"',adresseP='"+adresse+"',telP='"+tel+"' where cinP='"+cin+"'";
@@ -144,6 +145,7 @@ public class Patient {
 			
 	}catch(Exception e) {
 		e.printStackTrace();
+
 	}
 	
 	
