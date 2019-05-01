@@ -8,10 +8,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+
+import actors.Secretaire;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AcceuilS_pan extends JPanel {
 	boolean Switch=true;
-	private JTable table;
+	public static JTable table;
+	private JTextField textField;
 	public AcceuilS_pan() {
 		setLayout(null);
 		
@@ -21,16 +28,32 @@ public class AcceuilS_pan extends JPanel {
 		add(lblLaListeDattente);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 53, 740, 356);
+		scrollPane.setBounds(10, 85, 740, 356);
 		add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\HP\\git\\cabinet\\BAB\\ressources\\msg.png"));
+		label.setIcon(new ImageIcon("ressources\\msg.png"));
 		label.setBounds(760, 184, 40, 31);
 		add(label);
+		
+		JLabel lblChercher = new JLabel("chercher ");
+		lblChercher.setBounds(21, 54, 52, 14);
+		add(lblChercher);
+		
+		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				String txt=textField.getText();
+				Secretaire.chercher(txt, table);
+			}
+		});
+		textField.setBounds(95, 46, 144, 31);
+		add(textField);
+		textField.setColumns(10);
 
 	}
 }

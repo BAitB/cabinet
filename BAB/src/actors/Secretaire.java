@@ -1,9 +1,14 @@
 package actors;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.Statement;
 
+import DataBase.Helper;
 import DataBase.JDBC;
 
 public class Secretaire {
@@ -64,4 +69,18 @@ public class Secretaire {
    		}
 	   return resultat;
    }
+   
+   public static void chercher(String txt,JTable table) {
+
+		
+		String req="SELECT * FROM patient join rdv on patient.cinP=rdv.cinP where nomP LIKE '"+txt+"%'";
+		try {
+			java.sql.Connection con=JDBC.getConnection();
+		java.sql.Statement stm=(java.sql.Statement) con.createStatement();
+		ResultSet rs=stm.executeQuery(req);
+		DefaultTableModel dtm=Helper.buildTableModel(rs);
+		table.setModel(dtm);
+		}
+		catch(SQLException e){ e.printStackTrace();}
+	}
 }

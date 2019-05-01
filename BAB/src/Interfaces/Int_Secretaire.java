@@ -32,7 +32,7 @@ public class Int_Secretaire extends JFrame {
 
 	RDV_PAN RP=new RDV_PAN();
 	AcceuilS_pan acceuil=new AcceuilS_pan();
-	//compte_pan compte=new compte_pan();
+	compte_pan compte=new compte_pan();
 	/**
 	 * Launch the application.
 	 */
@@ -67,6 +67,10 @@ public class Int_Secretaire extends JFrame {
 				labelimg.setVisible(false);
 				//RDV.ListerRDV(table);
 			}
+			@Override
+			public void windowActivated(WindowEvent e) {
+				RDV.ListerRDV(AcceuilS_pan.table);
+			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 600);
@@ -98,7 +102,7 @@ public class Int_Secretaire extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				patient.setVisible(true);
 			    acceuil.setVisible(false);	
-			   // compte.setVisible(false);
+			    compte.setVisible(false);
 			    RP.setVisible(false);
 			    patient.setBounds(0, 90,866,846);
 			    //label_3.setVisible(false);
@@ -130,7 +134,7 @@ public class Int_Secretaire extends JFrame {
 				RP.setBounds(0, 90,866,846);
 				patient.setVisible(false);
 			    acceuil.setVisible(false);		
-			 //   compte.setVisible(false);
+			   compte.setVisible(false);
 			    RP.setVisible(true);
 				panel_1.add(RP);
 				labelimg.setVisible(false);
@@ -161,14 +165,14 @@ public class Int_Secretaire extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//compte.setBounds(0, 90,866,846);
+				compte.setBounds(0, 90,866,846);
 				patient.setVisible(false);
 			    acceuil.setVisible(false);
 			    RP.setVisible(false);
-			  //  compte.setVisible(true);
-			//	panel_1.add(compte);
+			    compte.setVisible(true);
+				panel_1.add(compte);
 				labelimg.setVisible(false);
-				//compte.actualiser();
+				compte.actualiser();
 			}
 		});
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
@@ -194,7 +198,7 @@ public class Int_Secretaire extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				acceuil.setBounds(0, 90,866,846);
 				patient.setVisible(false);
-			  //  compte.setVisible(false);
+			    compte.setVisible(false);
 			    RP.setVisible(false);
 			    acceuil.setVisible(true);
 				panel_1.add(acceuil);
