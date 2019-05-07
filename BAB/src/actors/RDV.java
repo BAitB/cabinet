@@ -6,6 +6,10 @@ package actors;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -150,7 +154,7 @@ public class RDV {
 		RDV_PAN.ListerButton.doClick();
 	
 	}
-	public static void Ajouter(JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextArea des)
+	public static void Ajouter(JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextField t,JTextArea des) 
 	{
 		int idp=cp.getSelectedIndex();
 		int ids=cs.getSelectedIndex();
@@ -158,9 +162,11 @@ public class RDV {
 		String CINM=(String) hM.get(idm);
 		String CINS=(String) hS.get(ids);
 		String CINP=(String) hP.get(idp);
+		
+		String strtime=t.getText();
 		String dt=d.getText();
 		String ds=des.getText();
-		String req="Insert into rdv values('"+CINM+"','"+CINP+"','"+CINS+"','"+dt+"','"+ds+"',NULL)";
+		String req="Insert into rdv values('"+CINM+"','"+CINP+"','"+CINS+"','"+dt+"','"+strtime+"','"+ds+"',NULL)";
 		java.sql.Connection co=JDBC.getConnection();
 		try {
 		Statement stm=(Statement) co.createStatement();

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
@@ -21,7 +22,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import actors.Email;
 import actors.Secretaire;
+import java.awt.SystemColor;
 public class Authentification extends JFrame {
 
 	private JPanel contentPane;
@@ -30,6 +34,7 @@ public class Authentification extends JFrame {
 	int ipass=0;
 	public static JPasswordField passwordField;
 	private JLabel lblerreur;
+	public static Object  result;//recuperer email de l'utilisateur afin de lui envy le nouveau mtpasse
 
 	/**
 	 * Launch the application.
@@ -81,6 +86,19 @@ public class Authentification extends JFrame {
 		panel.setBounds(0, 0, 482, 553);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+		JLabel passincorrect = new JLabel("mot de passe oubli\u00E9 ?");
+		passincorrect.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			     result = JOptionPane.showInputDialog(null, "merci de saisr votre mail:");
+			   Email.mpIncorrect();
+			}
+		});
+		passincorrect.setForeground(SystemColor.textHighlight);
+		passincorrect.setBounds(327, 11, 145, 14);
+		panel.add(passincorrect);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

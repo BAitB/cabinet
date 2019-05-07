@@ -37,8 +37,9 @@ public class Int_Medecin extends JFrame {
 	private JLabel label_3,magana;
 	Patient_pan patien=new Patient_pan();
 	compte_pan compte=new compte_pan();
+	
 	private JTable table;
-	private JLabel lblNewLabel_4,lblNewLabel_3 , lblSalleDattente;
+	private JLabel lblNewLabel_4,lblNewLabel_3 , lblSalleDattente, lblStatistiques;
 	
 	//private JLabel lblMonCompte;
 
@@ -284,7 +285,7 @@ public class Int_Medecin extends JFrame {
 		lblMonCompte.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
 		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMonCompte.setBounds(12, 281, 205, 49);
+		lblMonCompte.setBounds(12, 339, 205, 49);
 		panel.add(lblMonCompte);
 		lblPatient.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		
@@ -293,6 +294,22 @@ public class Int_Medecin extends JFrame {
 		lblPatient.setBounds(12, 223, 205, 49);
 		panel.add(lblPatient);
 		
+		 lblStatistiques = new JLabel("     Statistiques");
+		
+		lblStatistiques.setHorizontalAlignment(SwingConstants.LEFT);
+		lblStatistiques.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
+		lblStatistiques.setBounds(12, 279, 205, 49);
+		panel.add(lblStatistiques);
+		lblStatistiques.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				patien.setVisible(false);
+				AcceuilPanel.setVisible(false);				
+				compte.setVisible(false);
+				
+				
+			}
+		});
 		
 		Thread clock = new Thread() {
 		    @Override
@@ -318,4 +335,5 @@ public class Int_Medecin extends JFrame {
       
         return f;
 	}
+	
 	}

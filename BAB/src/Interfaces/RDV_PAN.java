@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 import Interfaces.Int_Secretaire;
+import actors.Email;
 import actors.RDV;
 //import com.mysql.jdbc.Statement;
 
@@ -36,7 +37,7 @@ import java.awt.event.KeyEvent;
 
 public class RDV_PAN extends JPanel {
 	private JTable table;
-	private JTextField FieldDate;
+	public static JTextField FieldDate;
 	static JComboBox combPatient;  ;
 	static JComboBox comboDoc;
 	static JComboBox comboSecretaire;
@@ -44,6 +45,9 @@ public class RDV_PAN extends JPanel {
 	public static JButton ListerButton;
 	private JTextField FieldFiltre;
 	JTextArea AreaDesc;
+	public static JTextField Fieldheure;
+	private final JButton btnmail = new JButton("mail");
+	public static String idsend;
 
 	/**
 	 * Create the panel.
@@ -98,13 +102,13 @@ public class RDV_PAN extends JPanel {
 		ModifierButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		ModifierButton.setBackground(new Color(0, 153, 204));
 		
-		JButton AjouterButton = new JButton("Ajouter");
+		JButton Button = new JButton("");
 		
-		AjouterButton.setIcon(new ImageIcon("ressources\\add (2).png"));
-		AjouterButton.setBounds(0, 25, 115, 23);
-		panel_1.add(AjouterButton);
-		AjouterButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		AjouterButton.setBackground(new Color(144, 238, 144));
+		Button.setIcon(new ImageIcon("ressources\\add (2).png"));
+		Button.setBounds(0, 25, 115, 23);
+		panel_1.add(Button);
+		Button.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		Button.setBackground(new Color(144, 238, 144));
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -123,7 +127,7 @@ public class RDV_PAN extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("Date");
 		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(37, 237, 81, 13);
+		lblNewLabel_1.setBounds(82, 228, 81, 13);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("CIN Docteur");
@@ -170,7 +174,7 @@ public class RDV_PAN extends JPanel {
 		
 		FieldDate = new JTextField();
 		
-		FieldDate.setBounds(195, 234, 135, 20);
+		FieldDate.setBounds(37, 241, 135, 20);
 		panel.add(FieldDate);
 		FieldDate.setColumns(10);
 		
@@ -206,10 +210,12 @@ public class RDV_PAN extends JPanel {
 				String CINP=(String) table.getValueAt(indice, 1);
 				String CINS=(String) table.getValueAt(indice, 2);
 				Date date= (Date) table.getValueAt(indice, 3);
-				String des= (String) table.getValueAt(indice, 4);
-				int id=(int) table.getValueAt(indice, 5);
+				String time= (String) table.getValueAt(indice, 4);
+				String des= (String) table.getValueAt(indice, 5);
+				int id=(int) table.getValueAt(indice, 6);
 				
 				FieldDate.setText(String.valueOf(date));
+				Fieldheure.setText(time);
 				AreaDesc.setText(des);
 				Fieldid.setText(String.valueOf(id));
 				
@@ -222,9 +228,10 @@ public class RDV_PAN extends JPanel {
 			}
 		});
 		
-		AjouterButton.addActionListener(new ActionListener() {
+		Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RDV.Ajouter(comboDoc,combPatient, comboSecretaire, FieldDate,AreaDesc);
+				RDV.Ajouter(comboDoc, combPatient, comboSecretaire, FieldDate, Fieldheure, AreaDesc);
+				
 			}
 		});
 		SupprimerButton.addActionListener(new ActionListener() {
@@ -250,7 +257,24 @@ public class RDV_PAN extends JPanel {
 		});
 		
 		RDV.FiltereJcomboBox(combPatient);
+		
+		Fieldheure = new JTextField();
+		Fieldheure.setColumns(10);
+		Fieldheure.setBounds(195, 241, 135, 20);
+		panel.add(Fieldheure);
+		
+		JLabel labelheure = new JLabel("Heure");
+		labelheure.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
+		labelheure.setBounds(238, 228, 81, 13);
+		panel.add(labelheure);
+		btnmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				idsend =Fieldid.getText();
+			    Email.MailRDV();
+			}
+		});
+		btnmail.setBounds(210, 265, 120, 31);
+		panel.add(btnmail);
 
 	}
-	
 }
