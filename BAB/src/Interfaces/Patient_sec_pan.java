@@ -229,6 +229,8 @@ public class Patient_sec_pan extends JPanel {
 					out = new PrintWriter(new BufferedWriter(new FileWriter(pathFichier)));
 				  out.println("   ------------------ les informations du patient--------------------");
 				  out.println("\n");
+				    out.write("   |nom            |      " );
+					out.println(nom_tf.getText());
 					out.write("   |prenom         |      " );
 					out.println(prenom_tf.getText());
 					out.write("   |CIN            |      " );
