@@ -285,7 +285,7 @@ public class Int_Medecin extends JFrame {
 		lblMonCompte.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		lblMonCompte.setIcon(new ImageIcon("ressources\\user1.png"));
 		lblMonCompte.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMonCompte.setBounds(12, 339, 205, 49);
+		lblMonCompte.setBounds(12, 293, 205, 49);
 		panel.add(lblMonCompte);
 		lblPatient.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
 		
@@ -294,22 +294,7 @@ public class Int_Medecin extends JFrame {
 		lblPatient.setBounds(12, 223, 205, 49);
 		panel.add(lblPatient);
 		
-		 lblStatistiques = new JLabel("     Statistiques");
 		
-		lblStatistiques.setHorizontalAlignment(SwingConstants.LEFT);
-		lblStatistiques.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 18));
-		lblStatistiques.setBounds(12, 279, 205, 49);
-		panel.add(lblStatistiques);
-		lblStatistiques.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				patien.setVisible(false);
-				AcceuilPanel.setVisible(false);				
-				compte.setVisible(false);
-				
-				
-			}
-		});
 		
 		Thread clock = new Thread() {
 		    @Override

@@ -54,6 +54,15 @@ public class RDV_PAN extends JPanel {
 	 */
 	public RDV_PAN() {
 		setLayout(null);
+		btnmail.setIcon(new ImageIcon("C:\\Users\\medot\\git\\cabinet\\BAB\\ressources\\mail.png"));
+		btnmail.setBounds(758, 0, 120, 31);
+		add(btnmail);
+		btnmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				idsend =Fieldid.getText();
+			    Email.MailRDV();
+			}
+		});
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 206, 209));
@@ -267,14 +276,6 @@ public class RDV_PAN extends JPanel {
 		labelheure.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		labelheure.setBounds(238, 228, 81, 13);
 		panel.add(labelheure);
-		btnmail.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				idsend =Fieldid.getText();
-			    Email.MailRDV();
-			}
-		});
-		btnmail.setBounds(210, 265, 120, 31);
-		panel.add(btnmail);
 
 	}
 }

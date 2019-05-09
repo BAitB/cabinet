@@ -244,7 +244,7 @@ public class Int_Secretaire extends JFrame {
 		panel_2.setBounds(12, 0, 187, 83);
 		panel_1.add(panel_2);
 		
-		JLabel lblMlleKniytha = new JLabel("Mlle Kniytha");
+		JLabel lblMlleKniytha = new JLabel("Mlle Saadaoui");
 		lblMlleKniytha.setIcon(new ImageIcon("ressources\\icons8-woman-profile-32.png"));
 		lblMlleKniytha.setBounds(0, 13, 187, 44);
 		panel_2.add(lblMlleKniytha);
