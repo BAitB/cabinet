@@ -24,7 +24,13 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.MessageFormat;
+
 import javax.swing.JTabbedPane;
 import javax.swing.ListSelectionModel;
 
@@ -41,6 +47,7 @@ public class Patient_sec_pan extends JPanel {
 	JButton btn_modifier ;
 	private JComboBox<String> cb_sexe;
 	JButton btn_afficher;
+	private String des;
 
 	/**
 	 * Create the panel.
@@ -67,7 +74,7 @@ public class Patient_sec_pan extends JPanel {
 				}
 			
 		});
-		btn_afficher.setBounds(602, 437, 227, 25);
+		btn_afficher.setBounds(609, 437, 113, 25);
 		add(btn_afficher);
 		
 		nom_tf = new JTextField();
@@ -208,6 +215,55 @@ public class Patient_sec_pan extends JPanel {
 		table.setFillsViewportHeight(true);
 		
 		scrollPane.setViewportView(table);
+		
+		JButton btnFichierText = new JButton("G\u00E9n\u00E9rer un  txt");
+		btnFichierText.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			
+				PrintWriter out=null;
+				try{
+					/* Path vers le fichier à créer*/
+					String pathFichier = "ressources/patient.txt";
+					/* Ouverture du fichier en écriture */
+					out = new PrintWriter(new BufferedWriter(new FileWriter(pathFichier)));
+				  out.println("   ------------------ les informations du patient--------------------");
+				  out.println("\n");
+				    out.write("   |nom            |      " );
+					out.println(nom_tf.getText());
+					out.write("   |prenom         |      " );
+					out.println(prenom_tf.getText());
+					out.write("   |CIN            |      " );
+					out.println(cin_tf.getText());
+					out.write("   |Sexe           |      " );
+					if(cb_sexe.getSelectedIndex()==0) out.println("Homme");
+					else out.println("Femme");
+					out.write("   |Age            |      " );
+					out.println(age_tf.getText());
+					out.write("   |Adresse        |      " );
+					out.println(adr_ta.getText());
+					out.write("   |Telephone      |      " );
+					out.println(tel_tf.getText());
+					out.write("   |Description    |      " );
+					out.println(des);
+					out.println(" __________________________________________________________________");
+					JOptionPane.showMessageDialog(null, "Terminer ,le fichier patient a été bien créé ");
+				}
+				catch(IOException exc){
+					exc.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Probleme lors de la creation du fichier" ,"Erreur",  JOptionPane.ERROR_MESSAGE);
+				}
+				finally {
+					if(out!=null){
+						/* Fermeture du flux */
+						out.close();
+					}
+				}
+			}
+		});
+		btnFichierText.setBackground(new Color(175, 238, 238));
+		btnFichierText.setBounds(753, 437, 113, 25);
+		add(btnFichierText);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -215,6 +271,7 @@ public class Patient_sec_pan extends JPanel {
 				String C=(String)table.getValueAt(index, 0);
 				String n=(String)table.getValueAt(index, 1);
 				String p=(String)table.getValueAt(index, 2);
+				des=(String)table.getValueAt(index, 5);
 				String adr=(String)table.getValueAt(index, 6);
 				String sexe=(String)table.getValueAt(index, 3);
 				int age=(int)table.getValueAt(index, 4);
@@ -236,7 +293,4 @@ public class Patient_sec_pan extends JPanel {
 		});
 
 	}
-	
-	
-	
 }

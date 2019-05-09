@@ -1,0 +1,11 @@
+   ------------------ les informations du patient--------------------
+
+
+   |prenom         |      
+   |CIN            |      
+   |Sexe           |      Homme
+   |Age            |      
+   |Adresse        |      
+   |Telephone      |      
+   |Description    |      null
+ __________________________________________________________________
