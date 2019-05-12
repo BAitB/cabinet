@@ -85,8 +85,8 @@ public class Patient {
 	public void setTelP(String telP) {
 		this.telP = telP;
 	}
-	public static void insert(String cin,String n, String p, String adresse, String tel, String sexe, int age) {
-		String req="Insert into patient values('"+cin+"','"+n+"','"+p+"','"+sexe+"','"+age+"','','"+adresse+"','"+tel+"')";
+	public static void insert(String cin,String n, String p, String adresse, String tel, String sexe, int age,String login) {
+		String req="Insert into patient values('"+cin+"','"+n+"','"+p+"','"+sexe+"','"+age+"','','"+adresse+"','"+tel+"','"+login+"')";
 		Connection conn=DataBase.JDBC.getConnection();
 		try {
 			
@@ -98,6 +98,24 @@ public class Patient {
 		e.printStackTrace();
 	}
 	
+	}
+	public static ResultSet allsec() {
+		String req="SELECT cinP, nomP, prenomP, sexeP, ageP, adresseP, telP, login from patient ";
+		Connection conn=DataBase.JDBC.getConnection();
+		ResultSet rs=null;
+		try {
+			
+			Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs=stmt.executeQuery(req);
+		
+			
+			
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		return rs;
+
+		
 	}
 	public static ResultSet all() {
 		String req="SELECT * from patient ";
@@ -134,8 +152,8 @@ public class Patient {
 		
 
 	}
-	public static void modifier(String cin,String n, String p, String adresse, String tel, String sexe, int age) {
-		String req="Update patient set nomP='"+n+"',prenomP='"+p+"',sexeP='"+sexe+"',ageP='"+age+"',adresseP='"+adresse+"',telP='"+tel+"' where cinP='"+cin+"'";
+	public static void modifier(String cin,String n, String p, String adresse, String tel, String sexe, int age,String login) {
+		String req="Update patient set nomP='"+n+"',prenomP='"+p+"',sexeP='"+sexe+"',ageP='"+age+"',adresseP='"+adresse+"',telP='"+tel+"',login='"+login+"' where cinP='"+cin+"'";
 		Connection conn=DataBase.JDBC.getConnection();
 		try {
 			

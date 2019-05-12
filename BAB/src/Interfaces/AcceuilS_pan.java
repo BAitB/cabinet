@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import actors.MemoCalendar;
 import actors.Secretaire;
 
 import java.awt.event.KeyAdapter;
@@ -34,10 +35,17 @@ public class AcceuilS_pan extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("ressources\\msg.png"));
-		label.setBounds(760, 184, 40, 31);
-		add(label);
+		JLabel labelMemo = new JLabel("");
+		labelMemo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MemoCalendar n=new  MemoCalendar();
+				
+			}
+		});
+		labelMemo.setIcon(new ImageIcon("ressources\\msg.png"));
+		labelMemo.setBounds(760, 184, 40, 31);
+		add(labelMemo);
 		
 		JLabel lblChercher = new JLabel("chercher ");
 		lblChercher.setBounds(21, 54, 52, 14);

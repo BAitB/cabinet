@@ -1,11 +1,12 @@
    ------------------ les informations du patient--------------------
 
 
-   |prenom         |      
-   |CIN            |      
-   |Sexe           |      Homme
-   |Age            |      
-   |Adresse        |      
-   |Telephone      |      
-   |Description    |      null
+   |nom            |      Zafour
+   |prenom         |      Nabil
+   |CIN            |      P13
+   |Sexe           |      Femme
+   |Age            |      24
+   |Adresse        |      06124578
+   |Telephone      |      nabil@gmail.com
+   |Description    |      dr
  __________________________________________________________________

@@ -67,7 +67,7 @@ public class RDV {
 	public static void ListerRDV(JTable table) {
 
 		
-		String req="select * from rdv ";
+		String req="select cinM, cinP, cinS, date,Heure,idRDV from rdv ";
 		try {
 			java.sql.Connection con=JDBC.getConnection();
 		java.sql.Statement stm=(java.sql.Statement) con.createStatement();
@@ -154,7 +154,7 @@ public class RDV {
 		RDV_PAN.ListerButton.doClick();
 	
 	}
-	public static void Ajouter(JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextField t,JTextArea des) 
+	public static void Ajouter(JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextField t) 
 	{
 		int idp=cp.getSelectedIndex();
 		int ids=cs.getSelectedIndex();
@@ -165,8 +165,8 @@ public class RDV {
 		
 		String strtime=t.getText();
 		String dt=d.getText();
-		String ds=des.getText();
-		String req="Insert into rdv values('"+CINM+"','"+CINP+"','"+CINS+"','"+dt+"','"+strtime+"','"+ds+"',NULL)";
+	
+		String req="Insert into rdv values('"+CINM+"','"+CINP+"','"+CINS+"','"+dt+"','"+strtime+"',NULL)";
 		java.sql.Connection co=JDBC.getConnection();
 		try {
 		Statement stm=(Statement) co.createStatement();
@@ -176,7 +176,7 @@ public class RDV {
 		RDV_PAN.ListerButton.doClick();
 	}
 	
-	public static void Modifier(JTextField id,JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextArea des )
+	public static void Modifier(JTextField id,JComboBox cm,JComboBox cp,JComboBox cs,JTextField d,JTextField t )
 	{
 		int iden=Integer.parseInt(id.getText());
 		int idp=cp.getSelectedIndex();
@@ -186,8 +186,8 @@ public class RDV {
 		String CINS=(String) hS.get(ids);
 		String CINP=(String) hP.get(idp);
 		String dt=d.getText();
-		String ds=des.getText();
-		String req="UPDATE rdv SET cinM='"+CINM+"',cinP='"+CINP+"',cinS='"+CINS+"',date='"+dt+"',description='"+ds+"' where idRDV='"+iden+"'";
+		String time=t.getText();
+		String req="UPDATE rdv SET cinM='"+CINM+"',cinP='"+CINP+"',cinS='"+CINS+"',date='"+dt+"',heure='"+time+"' where idRDV='"+iden+"'";
 		java.sql.Connection co=JDBC.getConnection();
 		try {
 			Statement stm=(Statement) co.createStatement();
@@ -198,7 +198,7 @@ public class RDV {
 	public static void Filter(String valR,JTable table)
 	{
 		
-		String req="SELECT * FROM `rdv` WHERE concat(`cinM`, `cinP`, `cinS`, `date`, `description`, `idRDV`) LIKE '%"+valR+"%'";
+		String req="SELECT * FROM `rdv` WHERE concat(`cinM`, `cinP`, `cinS`, `date`, `idRDV`) LIKE '%"+valR+"%'";
 		java.sql.Connection co=JDBC.getConnection();
 		try {
 		Statement stm=(Statement) co.createStatement();

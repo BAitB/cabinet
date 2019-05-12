@@ -44,7 +44,6 @@ public class RDV_PAN extends JPanel {
 	private JTextField Fieldid;
 	public static JButton ListerButton;
 	private JTextField FieldFiltre;
-	JTextArea AreaDesc;
 	public static JTextField Fieldheure;
 	private final JButton btnmail = new JButton("mail");
 	public static String idsend;
@@ -54,7 +53,7 @@ public class RDV_PAN extends JPanel {
 	 */
 	public RDV_PAN() {
 		setLayout(null);
-		btnmail.setIcon(new ImageIcon("C:\\Users\\medot\\git\\cabinet\\BAB\\ressources\\mail.png"));
+		btnmail.setIcon(new ImageIcon("ressources\\mail.png"));
 		btnmail.setBounds(758, 0, 120, 31);
 		add(btnmail);
 		btnmail.addActionListener(new ActionListener() {
@@ -103,7 +102,7 @@ public class RDV_PAN extends JPanel {
 		JButton ModifierButton = new JButton("Modifier");
 		ModifierButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RDV.Modifier(Fieldid,comboDoc, combPatient, comboSecretaire, FieldDate, AreaDesc);
+				RDV.Modifier(Fieldid,comboDoc, combPatient, comboSecretaire, FieldDate,Fieldheure);
 			}
 		});
 		ModifierButton.setBounds(165, 25, 105, 23);
@@ -136,7 +135,7 @@ public class RDV_PAN extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("Date");
 		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(82, 228, 81, 13);
+		lblNewLabel_1.setBounds(37, 235, 81, 13);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("CIN Docteur");
@@ -153,11 +152,6 @@ public class RDV_PAN extends JPanel {
 		lblNewLabel_4.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
 		lblNewLabel_4.setBounds(37, 138, 143, 14);
 		panel.add(lblNewLabel_4);
-		
-		JLabel lblDescription = new JLabel("Description");
-		lblDescription.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		lblDescription.setBounds(37, 282, 68, 14);
-		panel.add(lblDescription);
 		
 		JLabel lblNewLabel_5 = new JLabel("IdRDV");
 		lblNewLabel_5.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
@@ -177,13 +171,9 @@ public class RDV_PAN extends JPanel {
 		comboSecretaire.setBounds(195, 136, 135, 20);
 		panel.add(comboSecretaire);
 		
-		 AreaDesc = new JTextArea();
-		AreaDesc.setBounds(44, 307, 286, 98);
-		panel.add(AreaDesc);
-		
 		FieldDate = new JTextField();
 		
-		FieldDate.setBounds(37, 241, 135, 20);
+		FieldDate.setBounds(195, 232, 135, 20);
 		panel.add(FieldDate);
 		FieldDate.setColumns(10);
 		
@@ -220,12 +210,9 @@ public class RDV_PAN extends JPanel {
 				String CINS=(String) table.getValueAt(indice, 2);
 				Date date= (Date) table.getValueAt(indice, 3);
 				String time= (String) table.getValueAt(indice, 4);
-				String des= (String) table.getValueAt(indice, 5);
-				int id=(int) table.getValueAt(indice, 6);
-				
+				int id=(int) table.getValueAt(indice, 5);
 				FieldDate.setText(String.valueOf(date));
 				Fieldheure.setText(time);
-				AreaDesc.setText(des);
 				Fieldid.setText(String.valueOf(id));
 				
 				RDV.RetelechergerCombobox(CINM, RDV.hM, comboDoc);
@@ -239,7 +226,7 @@ public class RDV_PAN extends JPanel {
 		
 		Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RDV.Ajouter(comboDoc, combPatient, comboSecretaire, FieldDate, Fieldheure, AreaDesc);
+				RDV.Ajouter(comboDoc, combPatient, comboSecretaire, FieldDate, Fieldheure);
 				
 			}
 		});
@@ -259,7 +246,6 @@ public class RDV_PAN extends JPanel {
 		ViderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			FieldDate.setText("");
-			AreaDesc.setText("");
 			Fieldid.setText(""); 
 				
 			}
@@ -269,12 +255,12 @@ public class RDV_PAN extends JPanel {
 		
 		Fieldheure = new JTextField();
 		Fieldheure.setColumns(10);
-		Fieldheure.setBounds(195, 241, 135, 20);
+		Fieldheure.setBounds(195, 281, 135, 20);
 		panel.add(Fieldheure);
 		
 		JLabel labelheure = new JLabel("Heure");
 		labelheure.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 13));
-		labelheure.setBounds(238, 228, 81, 13);
+		labelheure.setBounds(37, 284, 81, 13);
 		panel.add(labelheure);
 
 	}

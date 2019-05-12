@@ -48,6 +48,7 @@ public class Patient_sec_pan extends JPanel {
 	private JComboBox<String> cb_sexe;
 	JButton btn_afficher;
 	private String des;
+	private JTextField Fieldlogin;
 
 	/**
 	 * Create the panel.
@@ -66,7 +67,7 @@ public class Patient_sec_pan extends JPanel {
 			
 				
 					try {
-						table.setModel(Helper.buildTableModel(Patient.all()));
+						table.setModel(Helper.buildTableModel(Patient.allsec()));
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -98,7 +99,7 @@ public class Patient_sec_pan extends JPanel {
 		add(age_tf);
 		
 		adr_ta = new JTextArea();
-		adr_ta.setBounds(12, 321, 200, 87);
+		adr_ta.setBounds(12, 370, 200, 36);
 		add(adr_ta);
 		
 		tel_tf = new JTextField();
@@ -140,7 +141,8 @@ public class Patient_sec_pan extends JPanel {
 	        int age= Integer.parseInt(age_tf.getText());
 	    	String adresse =adr_ta.getText();
 	    	String telephone =tel_tf.getText();
-	    	Patient.insert(CIN, nom, prenom, adresse, telephone, sexe, age);
+	    	String login=Fieldlogin.getText();
+	    	Patient.insert(CIN, nom, prenom, adresse, telephone, sexe, age,login);
 	    	btn_afficher.doClick();
 	    	
 	    	
@@ -162,7 +164,8 @@ public class Patient_sec_pan extends JPanel {
 		        int age= Integer.parseInt(age_tf.getText());
 		    	String adresse =adr_ta.getText();
 		    	String telephone =tel_tf.getText();
-		    	Patient.modifier(CIN, nom, prenom, adresse, telephone, sexe, age);
+		    	String login =Fieldlogin.getText();
+		    	Patient.modifier(CIN, nom, prenom, adresse, telephone, sexe, age,login);
 		    	btn_afficher.doClick();  	
 		    		}
 		    });
@@ -192,7 +195,7 @@ public class Patient_sec_pan extends JPanel {
 		add(age_lbl);
 		
 		JLabel lb_adr = new JLabel("Adresse");
-		lb_adr.setBounds(12, 305, 56, 16);
+		lb_adr.setBounds(13, 356, 56, 16);
 		add(lb_adr);
 		
 		JLabel lbl_tel = new JLabel("Telephone");
@@ -248,6 +251,7 @@ public class Patient_sec_pan extends JPanel {
 					out.println(des);
 					out.println(" __________________________________________________________________");
 					JOptionPane.showMessageDialog(null, "Terminer ,le fichier patient a été bien créé ");
+					
 				}
 				catch(IOException exc){
 					exc.printStackTrace();
@@ -264,6 +268,15 @@ public class Patient_sec_pan extends JPanel {
 		btnFichierText.setBackground(new Color(175, 238, 238));
 		btnFichierText.setBounds(753, 437, 113, 25);
 		add(btnFichierText);
+		
+		Fieldlogin = new JTextField();
+		Fieldlogin.setColumns(10);
+		Fieldlogin.setBounds(12, 316, 200, 29);
+		add(Fieldlogin);
+		
+		JLabel labellogin = new JLabel("Login");
+		labellogin.setBounds(12, 302, 56, 16);
+		add(labellogin);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -271,14 +284,15 @@ public class Patient_sec_pan extends JPanel {
 				String C=(String)table.getValueAt(index, 0);
 				String n=(String)table.getValueAt(index, 1);
 				String p=(String)table.getValueAt(index, 2);
-				des=(String)table.getValueAt(index, 5);
-				String adr=(String)table.getValueAt(index, 6);
+				String adr=(String)table.getValueAt(index, 5);
 				String sexe=(String)table.getValueAt(index, 3);
 				int age=(int)table.getValueAt(index, 4);
-				String telepho=(String)table.getValueAt(index, 7);
+				String telepho=(String)table.getValueAt(index, 6);
+				String log=(String)table.getValueAt(index, 7);
 				String ages=""+age;
 				System.out.println(C);
 			  	nom_tf.setText(n);
+				Fieldlogin.setText(log);
 		    	prenom_tf.setText(p);
 		    	cin_tf.setText(C);
 		    	if (sexe.equals("homme")) {

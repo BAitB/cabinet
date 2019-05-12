@@ -141,9 +141,9 @@ public class Email {
             String to =patient();
             String from = "dev.baitb@gmail.com";
             String subject = "noreply";
-            String messageText = "  "
-            					+ heure
-            					+ date;
+            String messageText = " Bonjour Vous avez Rendez vous dans notre cabinet LE : "
+            					+ date + "à "
+            					+ heure +" Précise\n" + " veuillez vous présentez à l'heure";
             boolean sessionDebug = false;
 
             Properties props = System.getProperties();
